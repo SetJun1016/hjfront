@@ -1,0 +1,305 @@
+/*外边距*/
+.mt2 {
+    margin-top: 2px;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt12 {
+    margin-top: 12px;
+}
+
+.mt15 {
+    margin-top: 15px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt25 {
+    margin-top: 25px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.mt35 {
+    margin-top: 35px;
+}
+
+.mt40 {
+    margin-top: 40px;
+}
+
+.mt45 {
+    margin-top: 45px;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+
+.mt55 {
+    margin-top: 55px;
+}
+
+.mt65 {
+    margin-top: 65px;
+}
+
+/* 下外边距 */
+.mb2 {
+    margin-bottom: 2px;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mb25 {
+    margin-bottom: 25px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}
+
+.mb35 {
+    margin-bottom: 35px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.mb45 {
+    margin-block: 45px;
+}
+
+.mb50 {
+    margin-block: 50px;
+}
+
+/* 左外边距 */
+.ml0 {
+    margin-left: 0px !important;
+}
+
+.ml5 {
+    margin-left: 5px;
+}
+
+.ml10 {
+    margin-left: 10px;
+}
+
+.ml15 {
+    margin-left: 15px;
+}
+
+.ml20 {
+    margin-left: 20px;
+}
+
+.ml25 {
+    margin-left: 25px;
+}
+
+.ml30 {
+    margin-left: 30px;
+}
+
+.ml32 {
+    margin-left: 32px;
+}
+
+.ml35 {
+    margin-left: 35px;
+}
+
+.ml40 {
+    margin-left: 40px;
+}
+
+.ml45 {
+    margin-left: 45px;
+}
+
+.ml50 {
+    margin-left: 50px;
+}
+
+.ml55 {
+    margin-left: 55px;
+}
+
+/* 右外边距 */
+.mr5 {
+    margin-right: .1rem;
+}
+
+.mr10 {
+    margin-right: .2rem;
+}
+
+.mr15 {
+    margin-right: .3rem;
+}
+
+.mr20 {
+    margin-right: .4rem;
+}
+
+.mr25 {
+    margin-right: .5rem;
+}
+
+.mr30 {
+    margin-right: .6rem;
+}
+
+.mr35 {
+    margin-right: .7rem;
+}
+
+.mr40 {
+    margin-right: .8rem;
+}
+
+.mr45 {
+    margin-right: .9rem;
+}
+
+.mr50 {
+    margin-right: 1rem;
+}
+
+/* 上下外边距 */
+.m-t-b-5 {
+    margin: .1rem 0;
+}
+
+.m-t-b-10 {
+    margin: .2rem 0;
+}
+
+.m-t-b-15 {
+    margin: .3rem 0;
+}
+
+.m-t-b-20 {
+    margin: .4rem 0;
+}
+
+.m-t-b-25 {
+    margin: .5rem 0;
+}
+
+.m-t-b-30 {
+    margin: .6rem 0;
+}
+
+.m-t-b-35 {
+    margin: .7rem 0;
+}
+
+.m-t-b-40 {
+    margin: .8rem 0;
+}
+
+.m-t-b-45 {
+    margin: .9rem 0;
+}
+
+.m-t-b-50 {
+    margin: 1rem 0;
+}
+
+/* 左右外边距 */
+.m-l-r-5 {
+    margin: 0 .1rem;
+}
+
+.m-l-r-10 {
+    margin: 0 .2rem;
+}
+
+.m-l-r-15 {
+    margin: 0 .3rem;
+}
+
+.m-l-r-20 {
+    margin: 0 .4rem;
+}
+
+.m-l-r-25 {
+    margin: 0 .5rem;
+}
+
+.m-l-r-30 {
+    margin: 0 .6rem;
+}
+
+.m-l-r-35 {
+    margin: 0 .7rem;
+}
+
+.m-l-r-40 {
+    margin: 0 .8rem;
+}
+
+.m-l-r-45 {
+    margin: 0 .9rem;
+}
+
+.m-l-r-50 {
+    margin: 0 1rem;
+}
+
+/* dispaly 弹性布局 */
+.df {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*文字居中*/
+.tl {
+    text-align: left;
+}
+
+.tc {
+    text-align: center;
+}
+
+.tr {
+    text-align: right;
+}
+
+.ls {
+    letter-spacing: .02rem;
+}
+
+.br {
+    border-radius: 6px;
+}

@@ -1,0 +1,7 @@
+/* 引入css文件 */
+/* css reset的css文件 */
+@import './reset.css'; 
+ /* 公共样式 */
+@import './common.css';
+/* border处理css文件 */
+@import './border.css';
