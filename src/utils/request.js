@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Vue from 'vue'
+let vm = new Vue()
 // import { Toast } from 'mand-mobile'
 
 // const env = process.env.NODE_ENV
@@ -48,19 +50,19 @@ axiosService.interceptors.response.use(
         console.log(error.response.status)
         switch (error.response.status) {
         case 404:
-            // text = '系统开小差了，请稍后再试'
-            console.log('11111')
+            text = '系统开小差了，请稍后再试'
+            // console.log('11111')
             break;
         case 500:
-            // text = '系统繁忙，请联系客服'
+            text = '系统繁忙，请联系客服'
             console.log('22222')
             break;
         default:
-            // text = '未知的错误，请联系客服'
+            text = '未知的错误，请联系客服'
             console.log('33333')
             break;
         }
-        Toast.failed(text)
+        vm.$toast(text)
     }
 )
 

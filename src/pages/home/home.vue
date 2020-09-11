@@ -22,23 +22,28 @@
             <div class="order-img">
                 <div class="order-img-list" @click="$router.push({ path: '/orderList', query: {active: 1} })">
                     <img src="@/assets/img/pending.png" alt="">
-                    <div>9</div>
+                    <div v-show="supplyCoount.unHandleCount" v-text="supplyCoount.unHandleCount > 99 ? '99+' : supplyCoount.unHandleCount"></div>
                     <p>待处理</p>
                 </div>
                 <div class="order-img-list" @click="$router.push({ path: '/orderList', query: {active: 2} })">
                     <img src="@/assets/img/stayGoods.png" alt="">
-                    <div>8</div>
+                    <div v-show="supplyCoount.unSendCount" v-text="supplyCoount.unSendCount > 99 ? '99+' : supplyCoount.unSendCount"></div>
                     <p>待发货</p>
                 </div>
                 <div class="order-img-list" @click="$router.push({ path: '/orderList', query: {active: 3} })">
                     <img src="@/assets/img/transit.png" alt="">
-                    <div>2</div>
+                    <div v-show="supplyCoount.sendingCount" v-text="supplyCoount.sendingCount > 99 ? '99+' : supplyCoount.sendingCount"></div>
                     <p>发货中</p>
                 </div>
                 <div class="order-img-list" @click="$router.push({ path: '/orderList', query: {active: 4} })">
                     <img src="@/assets/img/successOrder.png" alt="">
-                    <!-- <div>1</div> -->
+                    <div v-show="supplyCoount.receivedCount" v-text="supplyCoount.receivedCount > 99 ? '99+' : supplyCoount.receivedCount"></div>
                     <p>已完成</p>
+                </div>
+                <div class="order-img-list" @click="$router.push({ path: '/orderList', query: {active: 5} })">
+                    <img src="@/assets/img/errorOrder.png" alt="">
+                    <div v-show="supplyCoount.exceptionCount" v-text="supplyCoount.exceptionCount > 99 ? '99+' : supplyCoount.exceptionCount"></div>
+                    <p>异常订单</p>
                 </div>
             </div>
         </div>
@@ -57,6 +62,7 @@
 </template>
 
 <script>
+    import { GetSupplyOrderCount } from '@/api/apiOrder'
     export default {
         data() {
             return {
@@ -89,8 +95,22 @@
                         url: '/login',
                         type: 'pushCh'
                     }
-                ]
+                ],
+                supplyCoount: {
+                    unHandleCount: 0,
+                    unSendCount: 0,
+                    sendingCount: 0,
+                    receivedCount: 0,
+                    exceptionCount: 0
+                }
             }
+        },
+        created() {
+            GetSupplyOrderCount().then(res => {
+                console.log(res)
+                this.supplyCoount = res.data
+                // this.supplyCoount.unHandleCount = 101
+            })
         },
         methods: {
             chooseCloumn(type, url) {
@@ -110,7 +130,7 @@
             toastDev() {
                 this.$toast('功能正在开发中...')
             }
-        }
+        },
     }
 </script>
 

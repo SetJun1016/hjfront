@@ -17,5 +17,14 @@ export default [
         meta: {
             requireAuth: true
         },
-    }
+    },
+    {
+        path: '/delivery',
+        name: 'delivery',
+        // component: HelloWorld
+        component: resolve => require(['@/pages/home/delivery'], resolve),
+        meta: {
+            requireAuth: true
+        },
+    },
 ]

@@ -8,18 +8,29 @@ import './styles/index.css'
 import { store } from './store/store.js'
 import { goBack } from '@/utils/goBack.js'
 import { IsValidToken } from '@/api/apiLogin'
-import { Field, Form, Button, Toast, Icon, NavBar, Tab, Tabs, Dialog } from 'vant'
+import { Field, Form, Button, Toast, Icon, NavBar, Tab, Tabs, Dialog, DropdownMenu, DropdownItem } from 'vant'
+import { List, ActionSheet, Cell, CellGroup, Empty, Step, Steps } from 'vant'
 require('../mock/mock.js')
 //引用md5插件
 import md5 from 'js-md5'
 Vue.use(Field);
+Vue.use(Cell);
+Vue.use(Step);
+Vue.use(Steps);
+Vue.use(CellGroup);
 Vue.use(Form);
 Vue.use(Button);
 Vue.use(Icon);
 Vue.use(NavBar);
 Vue.use(Tab);
 Vue.use(Tabs);
-// Vue.use(Dialog);
+Vue.use(Empty);
+Vue.use(Dialog);
+Vue.use(List);
+Vue.use(DropdownMenu);
+Vue.use(DropdownItem);
+Vue.use(ActionSheet );
+
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$toast = Toast

@@ -303,3 +303,15 @@
 .br {
     border-radius: 6px;
 }
+
+.bgf {
+    background-color: #fff;
+}
+
+.p10 {
+    padding: 10px;
+}
+
+.p-l-r-10 {
+    padding: 0 10px
+}
