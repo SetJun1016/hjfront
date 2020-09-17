@@ -5,13 +5,13 @@
             <van-icon @click="toastDev()" name="setting-o" size="25px" color="#000" />
         </div>
         <div class="userInfo mt10">
-            <img src="http://119.3.151.48/storage/app/images/1597369090472009.jpg" alt="">
+            <img :src="userInfo.image_url || '../../../static/img/pic.png'" alt="">
             <div class="userInfo-title">
-                <p>田亩信息网络有限公司</p>
-                <p>手机号: 183****4573</p>
+                <p>{{ userInfo.name }}</p>
+                <p>手机号: {{ userInfo.phone }}</p>
             </div>
         </div>
-        <div class="order">
+        <div class="order order-box-height">
             <div class="order-list">
                 <p>我的订单</p>
                 <div class="order-view" @click="$router.push({ path: '/orderList', query: {active: 0} })">
@@ -19,7 +19,7 @@
                     <van-icon class="icon" name="arrow" />
                 </div>
             </div>
-            <div class="order-img">
+            <div class="order-img order-height">
                 <div class="order-img-list" @click="$router.push({ path: '/orderList', query: {active: 1} })">
                     <img src="@/assets/img/pending.png" alt="">
                     <div v-show="supplyCoount.unHandleCount" v-text="supplyCoount.unHandleCount > 99 ? '99+' : supplyCoount.unHandleCount"></div>
@@ -51,8 +51,8 @@
             <div class="order-list">
                 <p>个人中心</p>
             </div>
-            <div class="order-img">
-                <div class="order-img-list" v-for="(item, index) in personal" :key="index" @click="chooseCloumn(item.type, item.url)">
+            <div class="order-img order-wrap">
+                <div class="order-img-list mb20" v-for="(item, index) in personal" :key="index" @click="chooseCloumn(item.type, item.url)">
                     <img :src="item.img" alt="">
                     <p v-text="item.name"></p>
                 </div>
@@ -88,6 +88,20 @@
                         url: '/problem',
                         type: 'dev'
                     },
+                    // {
+                    //     id: 4,
+                    //     name: '我的钱包',
+                    //     img: '../../../static/img/wallet.png',
+                    //     url: '/walletCenter',
+                    //     type: 'push'
+                    // },
+                    {
+                        id: 5,
+                        name: '更多功能',
+                        img: '../../../static/img/all.png',
+                        url: '/problem',
+                        type: 'dev'
+                    },
                     {
                         id: 4,
                         name: '推出登录',
@@ -102,10 +116,12 @@
                     sendingCount: 0,
                     receivedCount: 0,
                     exceptionCount: 0
-                }
+                },
+                userInfo: {}
             }
         },
         created() {
+            this.userInfo = JSON.parse(this.$store.getters.userInfo)
             GetSupplyOrderCount().then(res => {
                 console.log(res)
                 this.supplyCoount = res.data
@@ -157,6 +173,7 @@
             width: 1.2rem;
             height: 1.2rem;
             border-radius: 50%;
+            margin-right: .1rem;
         }
 
         &-title {
@@ -172,8 +189,12 @@
         }
     }
 
-    .order {
+    .order-box-height {
         height: 3rem;
+    }
+
+    .order {
+        // height: 3rem;
         margin: .2rem;
         background: #fff;
         border-radius: 6px;
@@ -200,12 +221,16 @@
             }
         }
 
+
+        .order-height {
+            height: 2rem;
+        }
+
         &-img {
             display: flex;
             align-items: center;
             justify-content: space-between;
             // flex-wrap: wrap;
-            height: 2rem;
             padding: 0 .3rem;
 
             &-list {
@@ -232,10 +257,12 @@
                     line-height: .4rem;
                 }
             }
+        }
 
-            // &-listTwo {
-            //     width: ;
-            // }
+        &-wrap {
+            flex-wrap: wrap;
+            justify-content: start;
+            margin: .4rem 0;
         }
     }
 </style>

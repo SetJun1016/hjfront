@@ -277,10 +277,23 @@
 }
 
 /* dispaly 弹性布局 */
+.dfs {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+/* dispaly 弹性布局 */
 .df {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.dfb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /*文字居中*/

@@ -9,6 +9,7 @@
             <p v-text="'商品数量:' + (orderDetail.goodsNum || '')"></p>
             <p v-text="'商品单价:' + (orderDetail.price || '')"></p>
             <p v-text="'订单状态:' + (orderDetail.orderStatusName || '')"></p>
+            <p v-if="orderDetail.reason" v-text="'异常原因:' + (orderDetail.reason || '')"></p>
             <p v-text="'订单编号:' + (orderDetail.orderSn || '')"></p>
             <p v-if="orderDetail.deliverySn" v-text="'物流单号:' + orderDetail.deliverySn"></p>
         </div>

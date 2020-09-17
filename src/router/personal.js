@@ -1,8 +1,3 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-
-Vue.use(Router)
-
 // 个人中心
 export default [
     {

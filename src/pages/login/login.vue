@@ -26,8 +26,8 @@
             return {
                 value1: '',
                 params: {
-                    mobile: '15212983908',
-                    password: '123456'
+                    mobile: '',
+                    password: ''
                 }
             }
         },
@@ -46,6 +46,8 @@
                         this.$store.dispatch('handle_userInfo', JSON.stringify(res.data.data))
                         console.log(JSON.parse(this.$store.getters.userInfo))
                         this.$router.replace('/')
+                    } else {
+                        this.$toast(res.data.msg)
                     }
                 })
             }

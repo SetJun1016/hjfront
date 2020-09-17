@@ -7,9 +7,10 @@ import axios from 'axios'
 import './styles/index.css'
 import { store } from './store/store.js'
 import { goBack } from '@/utils/goBack.js'
+import { dev } from '@/utils/dev.js'
 import { IsValidToken } from '@/api/apiLogin'
 import { Field, Form, Button, Toast, Icon, NavBar, Tab, Tabs, Dialog, DropdownMenu, DropdownItem } from 'vant'
-import { List, ActionSheet, Cell, CellGroup, Empty, Step, Steps } from 'vant'
+import { List, ActionSheet, Cell, CellGroup, Empty, Step, Steps, Grid, GridItem, Picker, Popup, Collapse, CollapseItem } from 'vant'
 require('../mock/mock.js')
 //引用md5插件
 import md5 from 'js-md5'
@@ -29,13 +30,20 @@ Vue.use(Dialog);
 Vue.use(List);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
-Vue.use(ActionSheet );
+Vue.use(ActionSheet);
+Vue.use(Grid);
+Vue.use(GridItem);
+Vue.use(Picker);
+Vue.use(Popup);
+Vue.use(Collapse);
+Vue.use(CollapseItem);
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$toast = Toast
 Vue.prototype.$Dialog = Dialog
 Vue.prototype.$goBack = goBack
+Vue.prototype.$dev = dev
 //将md5绑定到全局
 Vue.prototype.$md5 = md5
 // 导航守卫

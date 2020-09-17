@@ -1,8 +1,3 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-
-Vue.use(Router)
-
 // 登录以及无需验证token
 export default [
     {
