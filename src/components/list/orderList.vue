@@ -17,19 +17,19 @@
                     <div class="buttonX">
                         <van-button class="button" type="info" @click="$router.push({path: '/orderView', query: {id: item.id}})">查看详情</van-button>
                         <van-button class="button" v-show="(item.status == 5 || item.status == 6) && item.delivery_sn" @click="$router.push({path: '/delivery', query: {id: item.id, no: item.delivery_sn}})" type="warning">查看物流</van-button>
-                        <van-button class="button" v-show="item.status == 3" @click="cofirm(item.id, 0, 0, index)" type="danger">拒绝接单</van-button>
-                        <van-button class="button" v-show="item.status == 3" @click="cofirm(item.id, 0, 1, index)" type="primary">立即接单</van-button>
-                        <van-button class="button" v-show="item.status == 4" @click="cofirmDeliver(item.id, 1, 1, index)" type="primary">确认发货</van-button>
+                        <van-button class="button" v-if="item.status == 3" @click="cofirm(item.id, 0, 0, index)" type="danger">拒绝接单</van-button>
+                        <van-button class="button" v-if="item.status == 3" @click="cofirm(item.id, 0, 1, index)" type="primary">立即接单</van-button>
+                        <van-button class="button" v-if="item.status == 4" @click="cofirmDeliver(item.id, 1, 1, index)" type="primary">确认发货</van-button>
                         <!-- <van-button class="button" v-show="item.status == 5" @click="cofirmSuccess" type="primary">确认送达</van-button> -->
                     </div>
-                    <van-dialog v-model="show" :title="item.status == 3 ? '拒绝接单' : '发货确认'" show-cancel-button :before-close="item.status == 3 ? chargeBtn : chargeBtn4" :lock-scroll='true'>
+                    <van-dialog v-model="show" :title="showType == 0 ? '拒绝接单' : '发货确认'" show-cancel-button :before-close="showType == 0 ? chargeBtn : chargeBtn4" :lock-scroll='true'>
                         <div class="m-l-r-20">
-                            <div class="m-t-b-10" v-show="item.status == 3">您确定拒绝本次接单吗？</div>
-                            <div class="m-t-b-10" v-show="item.status == 4">确认发货？需填写好订单号或配送方式，点击确认按钮</div>
-                            <van-field v-show="item.status == 3" v-model="params.reason" rows="2" autosize label="拒接理由" type="textarea" maxlength="50" placeholder="请填写拒绝理由（理由必填）" show-word-limit />
-                            <van-cell class="m-t-b-20" v-show="item.status == 4" is-link title="配送方式" :value='actionStatus' @click="actionSheetShow = true" />
-                            <van-action-sheet v-show="item.status == 4" v-model="actionSheetShow" :actions="actions" @select="onSelect" />
-                            <van-cell-group v-show="item.status == 4 && params.delivery_type == 1" class="mb30">
+                            <div class="m-t-b-10" v-show="showType == 0">您确定拒绝本次接单吗？</div>
+                            <div class="m-t-b-10" v-show="showType == 1">确认发货？需填写好订单号或配送方式，点击确认按钮</div>
+                            <van-field v-show="showType == 0" v-model="params.reason" rows="2" autosize label="拒接理由" type="textarea" maxlength="50" placeholder="请填写拒绝理由（理由必填）" show-word-limit />
+                            <van-cell class="m-t-b-20" v-show="showType == 1" is-link title="配送方式" :value='actionStatus' @click="actionSheetShow = true" />
+                            <van-action-sheet v-show="showType == 1" v-model="actionSheetShow" :actions="actions" @select="onSelect" />
+                            <van-cell-group v-show="showType == 1 && params.delivery_type == 1" class="mb30">
                                 <van-field v-model="params.delivery_sn" label="物流单号" placeholder="请输入物流单号" />
                             </van-cell-group>
                         </div>
@@ -81,6 +81,7 @@
                 actionStatus: '',
                 index: '',
                 loadings: false,
+                showType: ''
                 // finished: false,
                 //请求第几页
                 // itemList: [],
@@ -113,8 +114,10 @@
                             // on cancel
                         });
                 } else {
+                    this.showType = 0
                     // console.log('拒绝')
                     this.show = true
+
                 }
             },
             cofirmDeliver(id, type, status, index) {
@@ -122,6 +125,7 @@
                 this.params.type = type
                 this.params.status = status
                 this.index = index
+                this.showType = 1
                 this.show = true
             },
             onSelect(item) {

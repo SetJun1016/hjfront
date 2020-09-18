@@ -7,6 +7,7 @@ export default [
         component: resolve => require(['@/pages/home/orderList'], resolve),
         meta: {
             requireAuth: true
+            // keepAlive: true
         },
     },
     {

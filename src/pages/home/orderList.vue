@@ -51,6 +51,7 @@
         created() {
             this.active = Number(this.$route.query.active)
             this.getSupplyOrderList()
+            console.log('重新加载')
         },
         methods: {
             onClick(name, title) {
@@ -61,6 +62,7 @@
                 this.loading = false
                 this.finished = false
                 this.page = 1
+                this.$router.replace({path: '/orderList', query: {active: this.active}})
                 this.getSupplyOrderList()
             },
             // 获取订单列表
