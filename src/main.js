@@ -48,32 +48,6 @@ Vue.prototype.$dev = dev
 Vue.prototype.$md5 = md5
 // 导航守卫
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
-router.beforeEach((to, from, next) => {
-    const userInfo = JSON.parse(store.getters.userInfo)
-    if (to.meta.requireAuth == false) {
-        next()
-    } else {
-        IsValidToken().then(res => {
-            console.log(res)
-            if(res.data.code == 200) {
-                if(res.data.data.scope != 26) {
-                    console.log('当前登录的账号为非商户账号')
-                    router.replace('/login')
-                } else {
-                    console.log('正常登录')
-                }
-            } else {
-                Toast('登录已过期，请重新登录')
-                // setTimeout(() => {
-                router.replace('/login')
-                // }, 1500)
-                // console.log('22222')
-                console.log('您的登录已过期')
-            }
-        })
-        next()
-    }
-});
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

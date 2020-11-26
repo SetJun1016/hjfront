@@ -2,15 +2,20 @@
     <div class="forget">
         <header class="tc">忘记密码</header>
         <van-form class="mt40" @submit="onSubmit">
-            <van-field class="brt" v-model="params.phone" type='number' left-icon='manager' name="手机号" label="手机号" placeholder="请输入手机号" :rules="[{ required: true, message: '请填写11位数字的手机号' }]" />
-            <van-field v-model="params.password" left-icon='lock' type="password" name="请输入密码" label="新密码" placeholder="请输入新密码" :rules="[{ required: true, message: '请填写6位及以上的密码' }]" />
-            <van-field class="brb" v-model="params.captcha" left-icon='info' center clearable label="短信验证码" placeholder="请输入短信验证码" :rules="[{ required: true, message: '请输入验证码' }]">
+            <van-field class="brt" label-width='5em' v-model="params.phone" type='number' left-icon='manager' name="手机号"
+                label="手机号" placeholder="请输入手机号" :rules="[{ required: true, message: '请填写11位数字的手机号' }]" />
+            <van-field label-width='5em' v-model="params.password" left-icon='lock' type="password" name="请输入密码"
+                label="新密码" placeholder="请输入新密码" :rules="[{ required: true, message: '请填写6位及以上的密码' }]" />
+            <van-field label-width='5em' class="brb" v-model="params.captcha" left-icon='info' center clearable
+                label="短信验证码" placeholder="请输入短信验证码" :rules="[{ required: true, message: '请输入验证码' }]">
                 <template #button>
-                    <van-button @click="getCode" native-type="button" :disabled='timeShow' size="small" type="primary">{{ timeShow ? time + '秒后重新获取' : '发送验证码' }}</van-button>
+                    <van-button @click="getCode" native-type="button" :disabled='timeShow' size="small" type="primary">
+                        {{ timeShow ? time + '秒': '获取验证码' }}</van-button>
                 </template>
             </van-field>
-            <div class="mt15 tr">
-                <router-link to='/login'>去登陆</router-link>
+            <div class="mt15 alignc">
+                <router-link to='/login' class="go">去登陆</router-link>
+                <van-icon size='12px' name="arrow" />
             </div>
             <div class="mt20">
                 <van-button round block type="info" native-type="submit">
@@ -22,7 +27,10 @@
 </template>
 
 <script>
-    import { Forgot, GetCode } from '@/api/apiLogin'
+    import {
+        Forgot,
+        GetCode
+    } from '@/api/apiLogin'
     export default {
         data() {
             return {
@@ -71,19 +79,27 @@
                     }
                 })
             }
-        }
+        },
+
+        // mounted() {
+        //     document.querySelector('body').setAttribute('style', 'background-color:#fff')
+        // },
+        // beforeDestroy() {
+        //     document.querySelector('body').removeAttribute('style')
+        // },
     }
 </script>
 
 <style lang='scss' scoped>
     .forget {
         padding: 0 .3rem;
+        background: #fff;
     }
 
     header {
         color: #0485fe;
-        font-size: .62rem;
-        margin-top: 2.5rem;
+        font-size: .7rem;
+        margin-top: 1.2rem;
     }
 
     /deep/ .van-cell {
@@ -97,7 +113,6 @@
     }
 
     /deep/ .van-field__label {
-        width: 5.2em;
         font-size: .24rem;
     }
 
@@ -110,6 +125,22 @@
     }
 
     /deep/ .van-button--small {
-        width: 1.56rem;
+        width: 1.7rem;
+        font-size: .24rem;
+    }
+
+    /deep/ .van-field__control {
+        font-size: .24rem;
+    }
+
+    .alignc {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: .42rem;
+
+        .go {
+            font-size: .24rem;
+        }
     }
 </style>

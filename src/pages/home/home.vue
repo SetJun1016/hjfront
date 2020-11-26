@@ -122,11 +122,11 @@
         },
         created() {
             this.userInfo = JSON.parse(this.$store.getters.userInfo)
-            GetSupplyOrderCount().then(res => {
-                console.log(res)
-                this.supplyCoount = res.data
-                // this.supplyCoount.unHandleCount = 101
-            })
+            // GetSupplyOrderCount().then(res => {
+            //     console.log(res)
+            //     this.supplyCoount = res.data
+            //     // this.supplyCoount.unHandleCount = 101
+            // })
         },
         methods: {
             chooseCloumn(type, url) {

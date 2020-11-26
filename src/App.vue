@@ -21,7 +21,7 @@
             Helvetica, sans-serif;
         color: #666;
         font-size: .28rem;
-        background: #f8f8f8;
+        background: #fff;
     }
 
     #app {
@@ -29,10 +29,9 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-size: .28rem;
-        // width: 100%;
+        width: 100%;
         height: 100%;
-		background: #f8f8f8;
-		// padding: 0 .3rem;
+		background: #fff;
 
         .Router {
             position: absolute;

@@ -328,3 +328,9 @@
 .p-l-r-10 {
     padding: 0 10px
 }
+
+.dfs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -19,6 +19,24 @@ export default [
         }
     },
     {
+        path: '/register',
+        name: 'register',
+        // component: HelloWorld
+        component: resolve => require(['@/pages/login/register'], resolve),
+        meta: {
+            requireAuth: false
+        }
+    },
+    {
+        path: '/bankRegister',
+        name: 'bankRegister',
+        // component: HelloWorld
+        component: resolve => require(['@/pages/login/bankRegister'], resolve),
+        meta: {
+            requireAuth: false
+        }
+    },
+    {
         path: '/problem',
         name: 'problem',
         // component: HelloWorld
