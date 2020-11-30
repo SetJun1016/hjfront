@@ -1,7 +1,7 @@
 <template>
     <div class="password">
         <van-nav-bar title="绑定支付宝账号" left-text="返回" left-arrow @click-left="$goBack()" />
-        <div class="bankUpDateMatters mb20">
+        <!-- <div class="bankUpDateMatters mb20">
             <div>
                 1、您所填写的姓名与身份证号码必须一致，一旦验证通过将无法进行修改
             </div>
@@ -14,7 +14,7 @@
             <div>
                 4、您的支付宝绑定必须与银行卡绑定是同一姓名和身份证号
             </div>
-        </div>
+        </div> -->
         <van-form validate-first @submit="submit" ref="vanForm">
             <!-- 通过 pattern 进行正则校验 -->
             <van-field v-model.trim="params.alipay_username" label="姓名" name="validator3" placeholder="请输入您的真实姓名" clearable :rules="[{ required: true, message: '请正确输入您的姓名' }]" />
@@ -22,7 +22,7 @@
             <van-field v-model.trim="params.alipay_account" label="支付宝账号" name="validator2" placeholder="请输入支付宝账号" clearable :rules="[{ validator: validator2, message: '请正确输入您的支付宝账号' }]" />
             <van-field v-model.trim="params.id_card" label="身份证账号" name="validator" placeholder="请输入身份证号码" clearable :rules="[{ validator, message: '请正确输入您的身份证号码' }]" />
             <div style="margin: 16px;">
-                <van-button round block type="info" native-type="submit">
+                <van-button round block type="danger" native-type="submit">
                     提交
                 </van-button>
             </div>

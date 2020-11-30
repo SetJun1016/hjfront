@@ -4,7 +4,7 @@ export default [
         path: '/',
         name: 'home',
         // component: HelloWorld
-        component: resolve => require(['@/pages/login/login'], resolve),
+        component: resolve => require(['@/pages/home/home'], resolve),
         meta: {
             requireAuth: true
         },

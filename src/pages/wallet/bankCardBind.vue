@@ -1,7 +1,7 @@
 <template>
     <div class="bankCardBind">
         <van-nav-bar title="绑定银行卡" left-text="返回" left-arrow @click-left="$goBack()" />
-        <div class="bankUpDateMatters mb20">
+        <!-- <div class="bankUpDateMatters mb20">
             <div>
                 1、必须填报您本人在中国境内开立的银行账户（可查询手机银行或咨询开户银行）
             </div>
@@ -11,7 +11,7 @@
             <div>
                 3.本平台暂只支持中国工商银行,中国农业银行,中国银行,交通银行,招商银行,平安银行,上海浦东发展银行,兴业银行,中国民生银行,中国光大银行,中国邮政储蓄银行,广发银行等银行机构
             </div>
-        </div>
+        </div> -->
         <van-form validate-first @submit="submit" ref="vanForm">
             <!-- 通过 pattern 进行正则校验 -->
             <van-field v-model="params.name" label="姓名" left-icon='manager' placeholder="请输入您的姓名" clearable :rules="[{ required: true, message: '请输入您的真实姓名' }]" />
@@ -28,7 +28,7 @@
             <!-- 通过 validator 进行函数校验 -->
             <van-field class="brb" v-model="params.bankCard" left-icon='coupon' center clearable label="银行卡号" placeholder="请输入银行卡号" :rules="[{ validator: validator1, message: '请输入正确的银行卡号' }]" />
             <div style="margin: 16px;">
-                <van-button round block type="info" native-type="submit">
+                <van-button round block type="danger" native-type="submit">
                     提交
                 </van-button>
             </div>

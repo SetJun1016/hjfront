@@ -334,3 +334,8 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.dfl {
+    display: flex;
+    align-items: center;
+}

@@ -8,9 +8,9 @@ import './styles/index.css'
 import { store } from './store/store.js'
 import { goBack } from '@/utils/goBack.js'
 import { dev } from '@/utils/dev.js'
-import { IsValidToken } from '@/api/apiLogin'
+// import { IsValidToken } from '@/api/apiLogin'
 import { Field, Form, Button, Toast, Icon, NavBar, Tab, Tabs, Dialog, DropdownMenu, DropdownItem } from 'vant'
-import { List, ActionSheet, Cell, CellGroup, Empty, Step, Steps, Grid, GridItem, Picker, Popup, Collapse, CollapseItem } from 'vant'
+import { List, ActionSheet, Cell, CellGroup, Empty, Step, Steps, Grid, GridItem, Picker, Popup, Collapse, CollapseItem, Swipe, SwipeItem, Tabbar, TabbarItem } from 'vant'
 require('../mock/mock.js')
 //引用md5插件
 import md5 from 'js-md5'
@@ -37,6 +37,10 @@ Vue.use(Picker);
 Vue.use(Popup);
 Vue.use(Collapse);
 Vue.use(CollapseItem);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
+Vue.use(Tabbar);
+Vue.use(TabbarItem);
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios

@@ -7,7 +7,7 @@
             <!-- 通过 validator 进行函数校验 -->
             <van-field v-model="params.new_password" label="新密码" name="validator" placeholder="请输入旧密码" clearable :rules="[{ validator, message: '请输入大于等于6位数的密码' }]" />
             <div style="margin: 16px;">
-                <van-button round block type="info" native-type="submit">
+                <van-button round block type="danger" native-type="submit">
                     提交
                 </van-button>
             </div>

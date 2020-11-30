@@ -4,27 +4,28 @@
         <div class="wallet-title">
             <div class="walletA mb5">当前余额（元）</div>
             <div class="walletA walletB mb15">{{ moneyShow ? '0.00' : '****' }}</div>
-                <div class="timeDiv dfs">
-                    <div class="time mr5">2020-09-14 17:02:03</div>
-                    <img @click="imgRefresh" class="mr5" :class="refreshShow ? 'imgAnimation' : ''" src="../../../static/img/refresh.png" alt="">
-                    <img @click="moneyShowClick" :src="moneyShow ? '../../../static/img/visble.png' : '../../../static/img/unvisble.png'" alt="">
-                </div>
-            </div>
-            <van-grid class="mb20 oneGrid" :column-num="2" direction="horizontal">
-                <van-grid-item icon="../../../static/img/viewBill.png" @click="$router.push('/frozen')" text="查看明细" />
-                <van-grid-item icon="../../../static/img/shou.png" @click="$dev()" text="提现" />
-            </van-grid>
-            <div class="bind">
-                <div class="bind-title">
-                    个人服务类
-                </div>
-                <van-grid :column-num="3">
-                    <van-grid-item icon="../../../static/img/bindAlipay.png" to='/alipayBind' text="支付宝绑定" />
-                    <van-grid-item icon="../../../static/img/bankCard.png" @click="$dev()" text="银行卡绑定" />
-                    <van-grid-item icon="../../../static/img/signing.png" @click="$dev()" text="签约" />
-                </van-grid>
+            <div class="timeDiv dfl">
+                <div class="time mr5">2020-09-14 17:02:03</div>
+                <img @click="imgRefresh" class="mr5" :class="refreshShow ? 'imgAnimation' : ''"
+                    src="../../../static/img/refresh.png" alt="">
+                <img @click="moneyShowClick"
+                    :src="moneyShow ? '../../../static/img/visble.png' : '../../../static/img/unvisble.png'" alt="">
             </div>
         </div>
+        <van-grid class="mb20 oneGrid" :column-num="2" direction="horizontal">
+            <van-grid-item icon="../../../static/img/viewBill.png" @click="$router.push('/frozen')" text="查看明细" />
+            <van-grid-item icon="../../../static/img/shou.png" @click="$dev()" text="提现" />
+        </van-grid>
+        <div class="bind">
+            <div class="bind-title">
+                个人服务类
+            </div>
+            <van-grid :column-num="3">
+                <van-grid-item icon="../../../static/img/alipay-info.png" to='/alipayBind' text="支付宝绑定" />
+                <van-grid-item icon="../../../static/img/card.png" @click="$dev()" text="银行卡绑定" />
+            </van-grid>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -75,7 +76,7 @@
     }
 
     /deep/ .van-nav-bar {
-        background-image: linear-gradient(to right, #5a99ff, #3479E5) !important;
+        background: #FF5E5E!important;
     }
 
     .wallet {
@@ -83,7 +84,7 @@
 
         &-title {
             padding: .6rem .3rem .3rem;
-            background-image: linear-gradient(to right, #5a99ff, #3479E5) !important;
+            background: linear-gradient(to bottom, #FF5E5E, #FF1B1B) !important;
         }
     }
 
@@ -121,7 +122,7 @@
 
     .oneGrid {
         /deep/ .van-grid-item__content--center {
-            background-image: linear-gradient(to right, #5a99ff, #5a99ff) !important;
+            background: #FF1B1B !important;
             padding: .25rem;
             color: #fff;
         }
