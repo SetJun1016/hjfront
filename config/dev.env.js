@@ -6,10 +6,10 @@ let baseUrl = ''
 
 switch (local) {
 case 'dev':
-    baseUrl = '"http://119.3.151.48"'
+    baseUrl = '"http://tui.wudaojz.com/api"'
     break;
 case 'start':
-    baseUrl = '"http://app.haimiansiwei.com"'
+    baseUrl = '"http://tui.wudaojz.com/api"'
     break;
 }
 

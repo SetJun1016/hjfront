@@ -3,12 +3,13 @@
         <!-- <img src="@/assets/img/hi.png" alt=""> -->
         <div class="login-title">登录</div>
         <van-form class="mt40" @submit="onSubmit">
-            <van-field label-width='4em' class="brt" v-model="params.mobile" left-icon='manager' name="手机号" label="手机号"
+            <van-field label-width='4em' class="brt" v-model="params.phone" left-icon='manager' name="手机号" label="手机号"
                 placeholder="请输入手机号" :rules="[{ required: true, message: '请填写11位数字的手机号' }]" />
             <van-field label-width='4em' class="brb" v-model="params.password" left-icon='lock' type="password" name="密码" label="密码"
                 placeholder="请输入登录密码" :rules="[{ required: true, message: '请填写6位以上的密码' }]" />
             <div class="mt15 dfs">
-                <router-link to='/register'>注册账号</router-link>
+                <!-- <router-link to='/register'>注册账号</router-link>  -->
+                <div @click="$router.push({path: 'bankRegister', query: {type: 'noBank'}})">注册账号</div> 
                 <router-link to='/forgetPassword'>忘记密码？</router-link>
             </div>
             <div class="mt40">
@@ -30,7 +31,7 @@
             return {
                 value1: '',
                 params: {
-                    mobile: '',
+                    phone: '',
                     password: ''
                 }
             }
@@ -41,14 +42,14 @@
         methods: {
             onSubmit() {
                 Login({
-                    mobile: this.params.mobile,
-                    password: this.$md5(this.params.password)
+                    phone: this.params.phone,
+                    password: this.params.password
                 }).then(res => {
                     // console.log(res)
-                    if (res.data.code == 200) {
+                    if (res.data.code == 0) {
                         localStorage.setItem('token', res.data.data.token)
-                        this.$store.dispatch('handle_userInfo', JSON.stringify(res.data.data))
-                        console.log(JSON.parse(this.$store.getters.userInfo))
+                        // this.$store.dispatch('handle_userInfo', JSON.stringify(res.data.data))
+                        // console.log(JSON.parse(this.$store.getters.userInfo))
                         this.$router.replace('/')
                     } else {
                         this.$toast(res.data.msg)

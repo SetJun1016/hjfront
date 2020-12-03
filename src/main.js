@@ -53,6 +53,24 @@ Vue.prototype.$md5 = md5
 // 导航守卫
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
 /* eslint-disable no-new */
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token')
+    console.log(token)
+    console.log('个人token')
+    if (to.meta.requireAuth) {
+        if (token) {
+            next()
+        } else {
+            console.log('走此路')
+            // 跳转登录页面
+            next('/login')
+            // next()
+        }
+    } else {
+        next()
+    }
+})
+
 new Vue({
     el: '#app',
     router,

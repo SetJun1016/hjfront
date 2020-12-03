@@ -47,8 +47,8 @@
             onSubmit() {
                 Forgot({
                     phone: this.params.phone,
-                    captcha: this.params.captcha,
-                    password: this.$md5(this.params.password)
+                    code: this.params.captcha,
+                    password: this.params.password
                 }).then(res => {
                     console.log(res)
                 })

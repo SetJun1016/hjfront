@@ -5,13 +5,13 @@ let baseUrl = ''
 
 switch (PARAMS) {
 case 'test':
-    baseUrl = '"http://119.3.151.48"'
+    baseUrl = '"http://tui.wudaojz.com/api"'
     break;
 case 'build':
-    baseUrl = '"http://app.haimiansiwei.com"'
+    baseUrl = '"http://tui.wudaojz.com/api"'
     break;
 default:
-    baseUrl = '"http://119.3.151.48"'
+    baseUrl = '"http://tui.wudaojz.com/api"'
 }
 
 module.exports = {

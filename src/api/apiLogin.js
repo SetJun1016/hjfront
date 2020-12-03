@@ -2,15 +2,25 @@ import request from '@/utils/request'
 // 登录
 export function Login(data) {
     return request({
-        url: `/apis/api/v1/shop_login?mobile=${data.mobile}&password=${data.password}`,
-        method: 'get'
+        url: 'login',
+        method: 'post',
+        data
+    })
+}
+
+// 注册
+export function Register(data) {
+    return request({
+        url: 'register',
+        method: 'post',
+        data
     })
 }
 
 // 忘记密码
 export function Forgot(data) {
     return request({
-        url: `/apis/api/v1/forgot`,
+        url: 'find_password',
         method: 'post',
         data
     })
@@ -19,7 +29,7 @@ export function Forgot(data) {
 // 获取短信验证码
 export function GetCode(data) {
     return request({
-        url: `/apis/api/v1/sms`,
+        url: 'send_msg',
         method: 'post',
         data
     })

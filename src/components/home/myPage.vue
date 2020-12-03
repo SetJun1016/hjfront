@@ -43,7 +43,7 @@
             </div>
             <van-icon name="arrow" />
         </div>
-        <div class="mt20 lout">
+        <div class="mt20 lout" @click="$router.push('login')">
             退出登录
         </div>
     </div>

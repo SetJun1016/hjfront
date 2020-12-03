@@ -1,11 +1,8 @@
 <template>
     <div class="home">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-            <van-swipe-item>
-                <img src="../../../static/img/swiper1.png" alt="">
-            </van-swipe-item>
-            <van-swipe-item>
-                <img src="../../../static/img/swiper2.png" alt="">
+            <van-swipe-item v-for="(item, index) in banner_list" :key="index">
+                <img :src="item.image" alt="">
             </van-swipe-item>
             <van-swipe-item>
                 <div class="rows-swiper">
@@ -38,86 +35,39 @@
             </van-swipe-item>
         </van-swipe>
         <div class="mt10 icon-box">
-            <div class='icon-box-img'>
-                <img src="../../../static/img/aliPayIcon.png" alt="">
-                <p>支付宝</p>
-            </div>
-            <div class='icon-box-img'>
-                <img src="../../../static/img/cloudIcon.png" alt="">
-                <p>云闪付</p>
-            </div>
-            <div class='icon-box-img'>
-                <img src="../../../static/img/mtIcon.png" alt="">
-                <p>美团</p>
-            </div>
-            <div class='icon-box-img'>
-                <img src="../../../static/img/jdIcon.png" alt="">
-                <p>京东</p>
+            <div class='icon-box-img' @click="goApp(item.app)" v-for="(item, index) in app" :key="index">
+                <img :src="item.image" alt="">
+                <p v-text="item.name"></p>
             </div>
         </div>
         <div class="mt10 task">
             <div class="task-title">任务推荐</div>
-            <div class="task-box mt10">
-                <div class="task-box-title">支付宝App拉新</div>
+            <div class="task-box mt10" v-for="(item, index) in app" :key="index">
+                <div class="task-box-title" v-text="item.name + '拉新'"></div>
                 <div class="task-box-detail">
-                    <p>支付宝新用户，领取话费红包、线下支付红包等任一新人红包并完成核销后，即可获得拉新奖励。</p>
+                    <!-- <p>支付宝新用户，领取话费红包、线下支付红包等任一新人红包并完成核销后，即可获得拉新奖励。</p> -->
+                    <p v-text="item.desc"></p>
                     <p>立即报名</p>
                 </div>
                 <div class="task-box-price mt5">佣金单价</div>
                 <div class="task-box-content mt5">
                     <div class="dfl contentW50">
                         <p>有效用户数:</p>
-                        <p class="ml5">3</p>
+                        <p class="ml5" v-text="item.valid_user_count"></p>
                     </div>
                     <div class="dfl contentW50">
                         <p>有效确认用户数:</p>
-                        <p class="ml5">3</p>
+                        <p class="ml5" v-text="item.valid_confirm_user_count"></p>
                     </div>
                 </div>
                 <div class="task-box-content mt15">
                     <div class="dfl contentW50">
                         <p>领取人数:</p>
-                        <p class="ml5">765</p>
+                        <p class="ml5" v-text="item.receive_user_count"></p>
                     </div>
                     <div class="dfl contentW50">
                         <p>发放酬金:</p>
-                        <p class="ml5">321821.9</p>
-                    </div>
-                </div>
-                <div class="dfs task-box-bottom">
-                    <div class="bottom-group">
-                        <p>高酬金</p>
-                        <p>推荐</p>
-                        <p>热门</p>
-                    </div>
-                    <div class="bottom-right">已报名: 32412</div>
-                </div>
-            </div>
-            <div class="task-box mt10">
-                <div class="task-box-title">支付宝App拉新</div>
-                <div class="task-box-detail">
-                    <p>支付宝新用户，领取话费红包、线下支付红包等任一新人红包并完成核销后，即可获得拉新奖励。</p>
-                    <p>立即报名</p>
-                </div>
-                <div class="task-box-price mt5">佣金单价</div>
-                <div class="task-box-content mt5">
-                    <div class="dfl contentW50">
-                        <p>有效用户数:</p>
-                        <p class="ml5">3</p>
-                    </div>
-                    <div class="dfl contentW50">
-                        <p>有效确认用户数:</p>
-                        <p class="ml5">3</p>
-                    </div>
-                </div>
-                <div class="task-box-content mt15">
-                    <div class="dfl contentW50">
-                        <p>领取人数:</p>
-                        <p class="ml5">765</p>
-                    </div>
-                    <div class="dfl contentW50">
-                        <p>发放酬金:</p>
-                        <p class="ml5">321821.9</p>
+                        <p class="ml5" v-text="item.grant_price"></p>
                     </div>
                 </div>
                 <div class="dfs task-box-bottom">
@@ -134,11 +84,36 @@
 </template>
 
 <script>
+    import {
+        GetIndex
+    } from '@/api/apiIndex'
     export default {
         name: 'vueName',
         data() {
             return {
-                msg: 'Welcome to your vueName'
+                msg: 'Welcome to your vueName',
+                app: [],
+                banner_list: []
+            }
+        },
+        created() {
+            GetIndex().then(res => {
+                console.log(res)
+                this.app = res.data.data.app
+                this.banner_list = res.data.data.banner_list
+                console.log(this.data)
+            })
+        },
+        methods: {
+            goApp(app) {
+                if (app == 21) {
+                    // Toast('正在开发中')
+                    this.$toast('正在开发中...')
+                } else if (app == 22) {
+                    this.$router.push('alipay')
+                } else {
+                    this.$toast('正在开发中...')
+                }
             }
         }
     }
@@ -206,14 +181,15 @@
         padding: 0 .3rem;
 
         .icon-box-img {
-            width: 1rem;
+            width: 1.2rem;
             height: 1.4rem;
             text-align: center;
             font-size: .24rem;
             // margin-top: .2rem;
 
             img {
-                width: 100%;
+                width: .8rem;
+                height: .8rem;
                 // height: 100%;
             }
 

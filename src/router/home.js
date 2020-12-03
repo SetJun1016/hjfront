@@ -6,7 +6,7 @@ export default [
         // component: HelloWorld
         component: resolve => require(['@/pages/home/home'], resolve),
         meta: {
-            requireAuth: true
+            requireAuth: false
         },
     }
 ]

@@ -1,8 +1,8 @@
 <template>
     <div class="register">
         <div class="header">注册账号</div>
-        <div class="register-box mt50" @click="$router.push({path: 'bankRegister', query: {type: 'bank'}})">银行推广人</div>
-        <div class="register-box" @click="$router.push({path: 'bankRegister', query: {type: 'noBank'}})">非银行推广人</div>
+        <!-- <div class="register-box mt50" @click="$router.push({path: 'bankRegister', query: {type: 'bank'}})">银行推广人</div> -->
+        <!-- <div class="register-box" @click="$router.push({path: 'bankRegister', query: {type: 'noBank'}})">非银行推广人</div> -->
     </div>
 </template>
 

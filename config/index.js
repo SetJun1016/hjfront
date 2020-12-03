@@ -11,7 +11,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/apis': {
-                target: 'http://app.haimiansiwei.com',
+                target: 'http://tui.wudaojz.com',
                 changeOrigin: true, //是否跨域
                 pathRewrite: {
                     '^/apis': '/' //需要rewrite重写的
