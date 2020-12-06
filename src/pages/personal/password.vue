@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import { ResetPassword } from '../../api/apiPersonal'
+    import { EditUserPassword } from '../../api/apiMy'
     export default {
         data() {
             return {
@@ -27,6 +27,9 @@
                     token: localStorage.getItem('token')
                 }
             };
+        },
+        created() {
+            this.$toast.clear()
         },
         methods: {
             // 校验函数返回 true 表示校验通过，false 表示不通过
@@ -43,15 +46,17 @@
                     forbidClick: true,
                     duration: 0
                 })
-                ResetPassword({
+                EditUserPassword({
                     token: this.params.token,
-                    old_password: this.$md5(this.params.old_password),
-                    new_password: this.$md5(this.params.new_password)
+                    password: this.params.old_password,
+                    new_password: this.params.new_password
                 }).then(res => {
                     console.log(res)
-                    if(res.data.code == 200) {
+                    if(res.data.code == 0) {
                         this.$toast.success('修改完成')
                         Object.assign(this.$data, this.$options.data()) // 重置表单所有信息
+                    } else {
+                        this.$toast.fail(res.data.msg)
                     }
                 })
             }

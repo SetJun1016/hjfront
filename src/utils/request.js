@@ -17,6 +17,7 @@ let vm = new Vue()
 //     API_BASE_URL = apiProdConfig;
 // }
 
+
 const debug = process.env.NODE_ENV !== 'production'
 // 创建一个axios实例
 const axiosService = axios.create({
@@ -42,6 +43,7 @@ axiosService.interceptors.request.use(
 axiosService.interceptors.response.use(
     response => {
         if (response.status === 200) {
+            vm.$toast.clear()
             return Promise.resolve(response);
         } else {
             return Promise.reject(response);

@@ -34,5 +34,13 @@ export default [
         meta: {
             requireAuth: true
         }
+    },
+    {
+        path: '/Withdrawal',
+        name: 'Withdrawal',
+        component: resolve => require(['@/pages/wallet/Withdrawal'], resolve),
+        meta: {
+            requireAuth: true
+        }
     }
 ]

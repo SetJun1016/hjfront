@@ -5,7 +5,7 @@
             <!-- 通过 pattern 进行正则校验 -->
             <van-field v-model="params.phone" label="新手机号" left-icon='manager' name="pattern" placeholder="请输入要绑定的手机号" clearable :rules="[{ validator, message: '请输入正确的手机号码' }]" />
             <!-- 通过 validator 进行函数校验 -->
-            <van-field class="brb" v-model="params.captcha" left-icon='info' center clearable label="短信验证码" placeholder="请输入短信验证码" :rules="[{ required: true, message: '请输入正确的短信验证码' }]">
+            <van-field class="brb" v-model="params.code" left-icon='info' center clearable label="短信验证码" placeholder="请输入短信验证码" :rules="[{ required: true, message: '请输入正确的短信验证码' }]">
                 <template #button>
                     <van-button @click="getCode" native-type="button" :disabled='timeShow' size="small" type="primary">{{ timeShow ? time + '秒后重新获取' : '发送验证码' }}</van-button>
                 </template>
@@ -21,18 +21,22 @@
 
 <script>
     import { GetCode } from '../../api/apiLogin'
-    import { UpdatePhone } from '../../api/apiPersonal'
+    // import { UpdatePhone } from '../../api/apiPersonal'
+    import { EditPhone } from '../../api/apiMy'
     export default {
         data() {
             return {
                 params: {
                     phone: '',
-                    captcha: '',
+                    code: '',
                     token: localStorage.getItem('token')
                 },
                 timeShow: false, // 倒计时时间是否显示
                 time: 60
             };
+        },
+        created() {
+            this.$toast.clear()
         },
         methods: {
             // 校验函数返回 true 表示校验通过，false 表示不通过
@@ -51,7 +55,7 @@
                     phone: this.params.phone
                 }).then(res => {
                     console.log(res)
-                    if (res.data.code == 200) {
+                    if (res.data.code == 0) {
                         this.timeShow = true
                         this.$toast('已发送短信');
                         var auth_timetimer = setInterval(() => {
@@ -73,9 +77,9 @@
                     forbidClick: true,
                     duration: 0
                 })
-                UpdatePhone(this.params).then(res => {
+                EditPhone(this.params).then(res => {
                     console.log(res)
-                    if(res.data.code == 200) {
+                    if(res.data.code == 0) {
                         this.$toast.success('修改完成')
                         Object.assign(this.$data, this.$options.data()) // 重置表单所有信息
                     } else {

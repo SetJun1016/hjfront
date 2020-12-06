@@ -7,101 +7,48 @@
                 <span v-text="item.is_cash == 1 ? '-' + item.score.toFixed(2) : '+' + item.score.toFixed(2)"></span>
             </p>
             <p v-text="item.status"></p>
+            <p v-text="(item.is_cash == 0 ? '入账时间：' : '出账时间：') + (item.created_at || '无')"></p>
+            <p v-show="item.bank_name" v-text="'所属网点：' + item.bank_name"></p>
+            <p v-show="item.valid_count" v-text="'推广有效户：' + item.valid_count"></p>
+            <p v-show="item.detail" v-text="'备注：' + item.detail"></p>
+            <p v-show="item.occur_date" v-text="'推广时间：' + item.occur_date"></p>
         </div>
     </div>
 </template>
 
 <script>
-import { BalanceRecord } from '@/api/apiWallet'
-export default {
-    data() {
-        return {
-            list:[
-                {
-                    score:200,
-                    cash_outed:7,
-                    created_at:"2020-09-16 07:33:24",
-                    is_cash:1,
-                    status:"提现中",
-                    bank_name:"东台营业部",
-                    valid_count:"",
-                    occur_date:"",
-                    detail:"",
-                    desc:"提现至支付宝"
-                },
-                {
-                    score:25,
-                    cash_outed:5,
-                    created_at:"2020-09-14 16:50:54",
-                    is_cash:0,
-                    status:"入账成功",
-                    bank_name:"东台营业部",
-                    valid_count:1,
-                    occur_date:"2020-09-13 00:00:00",
-                    detail:"支付宝拉新",
-                    desc:"支付宝拉新入账"
-                },
-                {
-                    score:200,
-                    cash_outed:7,
-                    created_at:"2020-09-16 07:33:24",
-                    is_cash:1,status:"提现中",
-                    bank_name:"东台营业部",
-                    valid_count:"",
-                    occur_date:"",
-                    detail:"",
-                    desc:"提现至支付宝"
-                },
-                {
-                    score:25,
-                    cash_outed:5,
-                    created_at:"2020-09-14 16:50:54",
-                    is_cash:0,
-                    status:"入账成功",
-                    bank_name:"东台营业部",
-                    valid_count:1,
-                    occur_date:"2020-09-13 00:00:00",
-                    detail:"支付宝拉新",
-                    desc:"支付宝拉新入账"
-                },
-                {
-                    score:200,
-                    cash_outed:7,
-                    created_at:"2020-09-16 07:33:24",
-                    is_cash:1,status:"提现中",
-                    bank_name:"东台营业部",
-                    valid_count:"",
-                    occur_date:"",
-                    detail:"",
-                    desc:"提现至支付宝"
-                },
-                {
-                    score:25,
-                    cash_outed:5,
-                    created_at:"2020-09-14 16:50:54",
-                    is_cash:0,
-                    status:"入账成功",
-                    bank_name:"东台营业部",
-                    valid_count:1,
-                    occur_date:"2020-09-13 00:00:00",
-                    detail:"支付宝拉新",
-                    desc:"支付宝拉新入账"
-                }
-            ]
+    import {
+        GetBalanceRecordList
+    } from '@/api/apiWallet'
+    export default {
+        data() {
+            return {
+                list: [],
+                page: 1
+            }
+        },
+        created() {
+            GetBalanceRecordList({
+                token: localStorage.getItem('token'),
+                page: this.page
+            }).then(res => {
+                console.log(res)
+                this.list = res.data.data.data
+            })
         }
     }
-}
 </script>
 
 <style lang='scss' scoped>
     .frozen-box {
         height: 2rem;
-        padding: .4rem .3rem;
+        padding: .2rem .3rem;
         background: #fff;
         margin-top: .3rem;
-        
+        border-bottom: .015rem solid #efefef;
+
         P {
-            line-height: .4rem;
+            line-height: .6rem;
         }
 
         p:first-child {

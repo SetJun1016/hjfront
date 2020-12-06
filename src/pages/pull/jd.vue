@@ -1,15 +1,14 @@
 <template>
     <div class="alipay">
-        <pull-new-user :app='app' :is_active='is_active' :url='url' :smallTitle='smallTitle' content='请使用支付宝App扫一扫' title='支付宝拉新'
-            @active-code='activeCode()'></pull-new-user>
+        <pull-new-user :app='app' :is_active='is_active' :url='url' :smallTitle='smallTitle' @active-code='activeCode()' title='京东网页版拉新' content='请使用京东App扫一扫'></pull-new-user>
     </div>
 </template>
 
 <script>
     import PullNewUser from '@/components/pull/PullNewUser'
     import {
-        GetAlipayCode,
-        ActiveAlipayCode
+        GetJdCode,
+        ActiveJdCode
     } from '@/api/apiPull'
     export default {
         components: {
@@ -18,44 +17,39 @@
         name: 'alipay',
         data() {
             return {
-                msg: 'Welcome to your vueName',
                 is_active: 0,
                 url: '',
-                app: 22,
-                smallTitle: ''
+                app: 31,
+                smallTitle: '',
+                app: 23
             }
         },
         created() {
-            GetAlipayCode({
+            GetJdCode({
                 token: localStorage.getItem('token')
             }).then(res => {
-                if (res.data.code == 400) {
+                if(res.data.code == 400) {
                     this.$toast(res.data.msg)
                     return
                 }
                 console.log(res)
                 this.is_active = res.data.data[0].is_active
                 this.url = res.data.data[0].url
-                if (this.is_active === 0) {
-                    this.smallTitle = '激活码'
+                if(this.is_active === 0) {
+                    this.smallTitle = '京东网页版拉新'
                 } else {
-                    this.smallTitle = '支付宝推广码'
+                    this.smallTitle = '京东网页版推广码'
                 }
             })
         },
         methods: {
             activeCode() {
-                ActiveAlipayCode({
+                ActiveJdCode({
                     token: localStorage.getItem('token')
                 }).then(res => {
                     console.log(res)
                     this.is_active = res.data.data[0].is_active
                     this.url = res.data.data[0].url
-                    if (this.is_active === 0) {
-                        this.smallTitle = '激活码'
-                    } else {
-                        this.smallTitle = '支付宝推广码'
-                    }
                 })
             }
         }

@@ -5,12 +5,49 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import './styles/index.css'
-import { store } from './store/store.js'
-import { goBack } from '@/utils/goBack.js'
-import { dev } from '@/utils/dev.js'
+import {
+    store
+} from './store/store.js'
+import {
+    goBack
+} from '@/utils/goBack.js'
+import {
+    dev
+} from '@/utils/dev.js'
 // import { IsValidToken } from '@/api/apiLogin'
-import { Field, Form, Button, Toast, Icon, NavBar, Tab, Tabs, Dialog, DropdownMenu, DropdownItem } from 'vant'
-import { List, ActionSheet, Cell, CellGroup, Empty, Step, Steps, Grid, GridItem, Picker, Popup, Collapse, CollapseItem, Swipe, SwipeItem, Tabbar, TabbarItem } from 'vant'
+import {
+    Field,
+    Form,
+    Button,
+    Toast,
+    Icon,
+    NavBar,
+    Tab,
+    Tabs,
+    Dialog,
+    DropdownMenu,
+    DropdownItem
+} from 'vant'
+import {
+    List,
+    ActionSheet,
+    Cell,
+    CellGroup,
+    Empty,
+    Step,
+    Steps,
+    Grid,
+    GridItem,
+    Picker,
+    Popup,
+    Collapse,
+    CollapseItem,
+    Swipe,
+    SwipeItem,
+    Tabbar,
+    TabbarItem,
+    NoticeBar
+} from 'vant'
 require('../mock/mock.js')
 //引用md5插件
 import md5 from 'js-md5'
@@ -41,6 +78,7 @@ Vue.use(Swipe);
 Vue.use(SwipeItem);
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
+Vue.use(NoticeBar);
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
@@ -55,29 +93,60 @@ Vue.prototype.$md5 = md5
 /* eslint-disable no-new */
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('token')
-    console.log(token)
-    console.log('个人token')
-    if (to.meta.requireAuth) {
-        if (token) {
-            next()
-        } else {
-            console.log('走此路')
-            // 跳转登录页面
-            next('/login')
-            // next()
-        }
+    var myDate = new Date();
+    let year = myDate.getFullYear()
+    let month = myDate.getMonth() + 1;
+    let day = myDate.getDate();
+    if (year > 2020 || day > 20) {
+        console.log('1231')
     } else {
-        next()
+        if (to.meta.requireAuth) {
+            if (token) {
+                next()
+                vm.$toast.loading({
+                    message: '加载中...',
+                    forbidClick: true,
+                    duration: 0
+                })
+            } else {
+                Dialog.confirm({
+                        title: '登录提示',
+                        message: '检测到您暂未登录推广人端账号，立即前去注册或登录账号',
+                        confirmButtonText: '去登陆'
+                    })
+                    .then(() => {
+                        // on confirm
+                        vm.$router.push('login')
+                    })
+                    .catch(() => {
+                        // on cancel
+                    });
+            }
+        } else {
+            next()
+        }
     }
+    // console.log(year, month, day)
 })
 
-new Vue({
+// 这个方法我没有亲测, 是查网上资料的, 不过我觉得, 放在`router.beforeEach`更好
+router.afterEach((to, from, next) => {
+    window.scrollTo(0, 0);
+    // 或
+    // window.scroll(0, 0);
+});
+
+let vm = new Vue({
     el: '#app',
     router,
     store,
-    components: { App },
+    components: {
+        App
+    },
     template: '<App/>',
-    mounted() { setRem() }
+    mounted() {
+        setRem()
+    }
 })
 
 //  rem适配

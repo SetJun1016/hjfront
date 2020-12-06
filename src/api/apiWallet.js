@@ -33,3 +33,19 @@ export function BalanceRecord(token, page, date) {
         method: 'get'
     })
 }
+
+// account_info
+export function GetBalanceRecordList(data) {
+    return request({
+        url: 'get_balance_record_list',
+        method: 'post',
+        data
+    })
+}
+export function CashOutToBanlance(data) {
+    return request({
+        url: 'cash_out_to_balance',
+        method: 'post',
+        data
+    })
+}

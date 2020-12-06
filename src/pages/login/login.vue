@@ -5,15 +5,16 @@
         <van-form class="mt40" @submit="onSubmit">
             <van-field label-width='4em' class="brt" v-model="params.phone" left-icon='manager' name="手机号" label="手机号"
                 placeholder="请输入手机号" :rules="[{ required: true, message: '请填写11位数字的手机号' }]" />
-            <van-field label-width='4em' class="brb" v-model="params.password" left-icon='lock' type="password" name="密码" label="密码"
-                placeholder="请输入登录密码" :rules="[{ required: true, message: '请填写6位以上的密码' }]" />
-            <div class="mt15 dfs">
+            <van-field label-width='4em' class="brb" v-model="params.password" left-icon='lock' type="password"
+                name="密码" label="密码" placeholder="请输入登录密码" :rules="[{ required: true, message: '请填写6位以上的密码' }]" />
+            <div class="mt20 dfs">
                 <!-- <router-link to='/register'>注册账号</router-link>  -->
-                <div @click="$router.push({path: 'bankRegister', query: {type: 'noBank'}})">注册账号</div> 
+                <!-- <div @click="$router.push({path: 'bankRegister', query: {type: 'noBank'}})">注册账号</div>  -->
+                <div @click="$router.push('register')">注册账号</div>
                 <router-link to='/forgetPassword'>忘记密码？</router-link>
             </div>
             <div class="mt40">
-                <van-button round block type="info" native-type="submit">
+                <van-button round block native-type="submit">
                     确定
                 </van-button>
             </div>
@@ -41,6 +42,11 @@
         },
         methods: {
             onSubmit() {
+                this.$toast.loading({
+                    message: '加载中...',
+                    forbidClick: true,
+                    duration: 0
+                })
                 Login({
                     phone: this.params.phone,
                     password: this.params.password
@@ -62,12 +68,12 @@
 
 <style lang='scss' scoped>
     .login {
-        padding: 0 .3rem;
+        padding: 0 .2rem;
 
         &-title {
-            margin-top: 1.2rem;
+            margin-top: 1.4rem;
             font-size: .7rem;
-            color: #1989FA;
+            color: #FF1B1B;
             text-align: center;
         }
 
@@ -79,6 +85,11 @@
                 position: absolute;
                 bottom: -.3rem;
             }
+        }
+
+        /deep/ .van-button {
+            color: #fff;
+            background: linear-gradient(to right, #FF5E5E, #FF1B1B);
         }
 
         /deep/ .van-field__label {

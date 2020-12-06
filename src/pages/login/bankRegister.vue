@@ -23,7 +23,7 @@
             <van-field label-width='4em' class="brb" v-model="params.password" left-icon='lock' type="password"
                 name="密码" label="密码" placeholder="请输入登录密码" :rules="[{ required: true, message: '请填写6位以上的密码' }]" />
             <div class="mt40">
-                <van-button round block type="info" @click="register">
+                <van-button round block type="danger" @click="register">
                     确定
                 </van-button>
             </div>
@@ -87,9 +87,14 @@
     .bank-header {
         margin-top: 1.2rem;
         font-size: .7rem;
-        color: #1989FA;
+        color: #FF1B1B;
         text-align: center;
     }
+
+    // /deep/ .van-button {
+    //     color: #fff;
+    //     background: linear-gradient(to right, #FF5E5E, #FF1B1B);
+    // }
 
     /deep/ .van-cell {
         padding: .5rem .32rem;

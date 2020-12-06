@@ -1,67 +1,104 @@
 <template>
-    <div class="my">
-        <div class="my-header">
-            <img src="../../../static/img/pic.png" alt="">
-            <div class="info">
-                <p>用户名:张三</p>
-                <p>手机号:183 **** 2353</p>
-                <p>身份:二级推广人</p>
+    <div class="lewis">
+
+        <div class="my">
+            <div class="my-header">
+                <img src="../../../static/img/pic.png" alt="">
+                <div class="info">
+                    <p v-text="'用户名：' + name"></p>
+                    <p v-text="'手机号：' + phone"></p>
+                    <p v-text="'身份：' + (scope == 38 ? '社会推广人' : '')"></p>
+                </div>
             </div>
-        </div>
-        <div class="list-list dfs" @click="$router.push('walletCenter')">
-            <div class="dfl">
-                <img src="../../../static/img/bag.png" alt="">
-                <p class="ml10">我的钱包</p>
+            <div class="list-list dfs" @click="$router.push('walletCenter')">
+                <div class="dfl">
+                    <img src="../../../static/img/bag.png" alt="">
+                    <p class="ml10">我的钱包</p>
+                </div>
+                <van-icon name="arrow" />
             </div>
-            <van-icon name="arrow" />
-        </div>
-        <div class="list-list dfs" @click="$router.push('alipayBind')">
-            <div class="dfl">
-                <img src="../../../static/img/alipay-info.png" alt="">
-                <p class="ml10">支付宝绑定</p>
+            <div class="list-list dfs" @click="$router.push('alipayBind')">
+                <div class="dfl">
+                    <img src="../../../static/img/alipay-info.png" alt="">
+                    <p class="ml10">支付宝绑定</p>
+                </div>
+                <van-icon name="arrow" />
             </div>
-            <van-icon name="arrow" />
-        </div>
-        <div class="list-list dfs" @click="$router.push('bankCardBind')">
+            <!-- <div class="list-list dfs" @click="$router.push('bankCardBind')">
             <div class="dfl">
                 <img src="../../../static/img/card.png" alt="">
                 <p class="ml10">银行卡绑定</p>
             </div>
             <van-icon name="arrow" />
-        </div>
-        <div class="list-list dfs" @click="$router.push('password')">
-            <div class="dfl">
-                <img src="../../../static/img/password.png" alt="">
-                <p class="ml10">修改密码</p>
+        </div> -->
+            <div class="list-list dfs" @click="$router.push('password')">
+                <div class="dfl">
+                    <img src="../../../static/img/password.png" alt="">
+                    <p class="ml10">修改密码</p>
+                </div>
+                <van-icon name="arrow" />
             </div>
-            <van-icon name="arrow" />
-        </div>
-        <div class="list-list dfs">
-            <div class="dfl">
-                <img src="../../../static/img/info.png" alt="">
-                <p class="ml10">修改手机号</p>
+            <div class="list-list dfs" @click="$router.push('phone')">
+                <div class="dfl">
+                    <img src="../../../static/img/info.png" alt="">
+                    <p class="ml10">修改手机号</p>
+                </div>
+                <van-icon name="arrow" />
             </div>
-            <van-icon name="arrow" />
-        </div>
-        <div class="mt20 lout" @click="$router.push('login')">
-            退出登录
+            <div class="mt20 lout" @click="goOut()">
+                退出登录
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    import {
+        GetUserInfo
+    } from '@/api/apiMy'
     export default {
         name: 'vueName',
         data() {
             return {
-                msg: 'Welcome to your vueName'
+                msg: 'Welcome to your vueName',
+                name: '',
+                phone: '',
+                scope: ''
+            }
+        },
+        created() {
+            this.$toast.loading({
+                message: '加载中...',
+                forbidClick: true,
+                duration: 0
+            })
+            GetUserInfo({
+                token: localStorage.getItem('token')
+            }).then(res => {
+                console.log(res)
+                this.name = res.data.data.name
+                this.phone = res.data.data.phone
+                this.scope = res.data.data.scope
+            })
+        },
+        methods: {
+            goOut() {
+                this.$router.push('login')
+                localStorage.removeItem('token')
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
+    .lewis {
+        width: 100%;
+        height: 100%;
+        // background: #efefef;
+    }
     .my {
+        // background: #f8f8f8;
+
         &-header {
             display: flex;
             align-items: center;

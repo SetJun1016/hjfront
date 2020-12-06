@@ -3,7 +3,7 @@
         <van-nav-bar title="我的钱包" left-text="返回" left-arrow @click-left="$goBack()" />
         <div class="wallet-title">
             <div class="walletA mb5">当前余额（元）</div>
-            <div class="walletA walletB mb15">{{ moneyShow ? '0.00' : '****' }}</div>
+            <div class="walletA walletB mb15">{{ moneyShow ? balance : '****' }}</div>
             <div class="timeDiv dfl">
                 <div class="time mr5">2020-09-14 17:02:03</div>
                 <img @click="imgRefresh" class="mr5" :class="refreshShow ? 'imgAnimation' : ''"
@@ -14,7 +14,7 @@
         </div>
         <van-grid class="mb20 oneGrid" :column-num="2" direction="horizontal">
             <van-grid-item icon="../../../static/img/viewBill.png" @click="$router.push('/frozen')" text="查看明细" />
-            <van-grid-item icon="../../../static/img/shou.png" @click="$dev()" text="提现" />
+            <van-grid-item icon="../../../static/img/shou.png" @click="$router.push('Withdrawal')" text="提现" />
         </van-grid>
         <div class="bind">
             <div class="bind-title">
@@ -29,23 +29,24 @@
 </template>
 
 <script>
+    import {
+        GetUserInfo
+    } from '@/api/apiMy'
     export default {
         data() {
             return {
                 refreshShow: false,
-                moneyShow: true
+                moneyShow: true,
+                balance: 0.00
             }
         },
         created() {
-            if (localStorage.getItem('moneyShow') == 0) {
-                this.moneyShow = false
-            } else {
-                this.moneyShow = true
-            }
+            this.getUserInfo()
         },
         methods: {
             // 刷新
             imgRefresh() {
+                this.getUserInfo()
                 this.refreshShow = true
                 setTimeout(() => {
                     this.refreshShow = false
@@ -60,6 +61,15 @@
                     localStorage.setItem('moneyShow', 0)
                 }
             },
+            // 获取用户信息
+            getUserInfo() {
+                GetUserInfo({
+                    token: localStorage.getItem('token')
+                }).then(res => {
+                    console.log(res)
+                    this.balance = res.data.data.balance
+                })
+            }
         }
     }
 </script>
@@ -76,7 +86,7 @@
     }
 
     /deep/ .van-nav-bar {
-        background: #FF5E5E!important;
+        background: #FF5E5E !important;
     }
 
     .wallet {

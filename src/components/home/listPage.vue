@@ -2,8 +2,8 @@
     <div class="list">
         <div class="list-title">
             <!-- <img src="../../../static/img/list_top.png" alt=""> -->
-            <div class="list-title-name">张三</div>
-            <div class="list-title-box">
+            <div class="list-title-name">拉新数据</div>
+            <!-- <div class="list-title-box">
                 <img src="../../../static/img/pic.png" class="list-title-img" />
                 <div class="list-img"></div>
                 <div class="list-bottom mt20">
@@ -20,25 +20,25 @@
                         <p>累计收益</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="list-box" :class="index == 0 ? 'mt100' : ''" v-for="(item, index) in listData" :key="index">
-            <div class="list-box-img dfl">
-                <img src="../../../static/img/aliPayIcon.png" alt="">
-                <p v-text="item.name"></p>
-            </div>
-            <div class="line-bottom">
-                <div>
-                    <p>30</p>
-                    <p>昨日有效户</p>
+            </div> -->
+            <div class="list-box" :class="index == 0 ? 'mt100' : ''" v-for="(item, index) in listData" :key="index">
+                <div class="list-box-img dfl">
+                    <img :src="item.image" alt="">
+                    <p v-text="item.name"></p>
                 </div>
-                <div>
-                    <p>50</p>
-                    <p>今日有效户</p>
-                </div>
-                <div>
-                    <p>80</p>
-                    <p>本年有效户</p>
+                <div class="line-bottom">
+                    <div>
+                        <p v-text="item.yesterday"></p>
+                        <p v-text="item.yesterday_name"></p>
+                    </div>
+                    <div>
+                        <p v-text="item.month"></p>
+                        <p v-text="item.month_name"></p>
+                    </div>
+                    <div>
+                        <p v-text="item.year"></p>
+                        <p v-text="item.year_name"></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,29 +46,29 @@
 </template>
 
 <script>
+    import {
+        GetList
+    } from '@/api/apiList'
     export default {
         name: 'vueName',
         data() {
             return {
                 msg: 'Welcome to your vueName',
-                listData: [{
-                        url: '../../static/img/aliPayIcon.png',
-                        name: '支付宝'
-                    },
-                    {
-                        url: '../../../static/img/aliPayIcon.png',
-                        name: '云闪付'
-                    },
-                    {
-                        url: '../../../static/img/aliPayIcon.png',
-                        nama: '京东'
-                    },
-                    {
-                        url: '../../../static/img/aliPayIcon.png',
-                        nama: '美团'
-                    }
-                ]
+                listData: []
             }
+        },
+        created() {
+            this.$toast.loading({
+                message: '加载中...',
+                forbidClick: true,
+                duration: 0
+            })
+            GetList({
+                token: localStorage.getItem('token')
+            }).then(res => {
+                console.log(res)
+                this.listData = res.data.data.app
+            })
         }
     }
 </script>
@@ -76,11 +76,14 @@
 <style scoped lang="scss">
     .list {
         margin-bottom: 2rem;
+
         &-title {
             width: 100%;
-            height: 3rem;
+            // height: 3rem;
+            min-height: 5rem;
             background: url(../../../static/img/list_top.png);
-            background-size: 100% 100%;
+            background-size: 100%;
+            background-repeat: no-repeat;
             position: relative;
 
             &-img {
@@ -94,6 +97,7 @@
             }
 
             &-name {
+                // width: 100%;
                 text-align: center;
                 padding-top: .6rem;
                 color: #fff;
@@ -140,7 +144,8 @@
         }
 
         .mt100 {
-            margin-top: 1.8rem;
+            margin-top: .8rem;
+            z-index: 2;
         }
 
         &-box {

@@ -1,15 +1,20 @@
 <template>
     <div class="pullNew">
-        <van-nav-bar :left-text="title" left-arrow @click-left="$goBack()" />
-        <div class="title" v-text="is_active == 1 ? '推广码' : '支付宝拉新'"></div>
-        <div class="sector"></div>
-        <div class='code-box'>
-            <vue-qr v-if="is_active == 1" class="vue-qr" :logoSrc='config.logo' :style="{ width: '100%', height: '100%' }" :text="url" :logoScale="50" :size="300"></vue-qr>
+        <!-- <van-nav-bar :left-text="title" class="red" left-arrow @click-left="$goBack()" /> -->
+        <div class="navbar" :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''">
+            <van-icon @click="$router.go(-1)" name="arrow-left" />
+            <p @click="$router.go(-1)" v-text="title"></p>
         </div>
-        <div class="code-tip" v-if="is_active == 1">请使用支付宝APP扫一扫</div>
+        <div ref="title" class="title" :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''" v-text="smallTitle"></div>
+        <div class="sector" :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''"></div>
+        <div class='code-box' :class="app == 21 ? 'cloudborder' : app == 22 ? 'alipayborder' : app == 31 ? 'mtborder' : app == 23 ? 'jdborder' : ''">
+            <vue-qr v-if="is_active == 1" class="vue-qr" :logoSrc='config.logo' :style="{ width: '100%', height: '100%' }" :text="url" :logoScale="50" :size="300"></vue-qr>
+            <img v-else @click="$emit('active-code')" :style="{ width: '80%', height: '80%', padding: '10%' }" src="../../../static/img/goData.jpg" alt="">
+        </div>
+        <div class="code-tip" v-if="is_active == 1" v-text="content"></div>
         <div class="code-tip" v-else @click="$emit('active-code')">点击激活</div>
-        <div class="take-out-content mt20">
-            <div class="take-out-content-one">
+        <div class="take-out-content mt20" :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''">
+            <div class="take-out-content-one" :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : ''">
                 <div class="take-out-content-two">
                     <div class="take-out-content-two-header">
                         <span>
@@ -50,16 +55,40 @@
                 }
             }
         },
+        created() {
+            console.log(this.app)
+            if(this.app == 21) {
+                this.config.logo = '../../../static/img/cloudIcon.png'
+            } else if(this.app == 22) {
+                this.config.logo = '../../../static/img/alipayIcon.png'
+            } else if(this.app == 23) {
+                this.config.logo = '../../../static/img/jdIcon.png'
+            } else if(this.app == 31){
+                this.config.logo = '../../../static/img/mtIcon.png'
+            }
+        },
         props: {
             title: {
                 type: String,
-                default: '支付宝拉新'
+                default: ''
+            },
+            smallTitle: {
+                type: String,
+                default: ''
             },
             is_active: {
                 type: Number,
                 default: 0
             },
             url: {
+                type: String,
+                default: ''
+            },
+            app: {
+                type: Number,
+                default: 100
+            },
+            content: {
                 type: String,
                 default: ''
             }
@@ -84,8 +113,27 @@
         background-image: linear-gradient(to right, #06b4fd, #6ABBFB);
     }
 
+    .navbar {
+        // width: 100%;
+        height: .9rem;
+        padding: 0 .3rem;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-size: .32rem;
+        // justify-content: ;
+        background-image: linear-gradient(to right, #06b4fd, #6ABBFB);
+
+        p {
+            margin-left: .1rem;
+            // font-size: .32rem;
+        }
+    }
+
     .title {
         font-size: .4rem;
+        height: .6rem;
+        line-height: .6rem;
         padding: .4rem 0;
         color: #fff;
         text-align: center;
@@ -170,5 +218,29 @@
                 }
             }
         }
+    }
+
+    .mt {
+        background: #F7A623;
+    }
+
+    .mtb {
+        background: #FFD387 !important;
+    }
+
+    .mtborder {
+        border: 0.2rem solid #FFD387 !important;
+    }
+
+    .jd {
+        background: #F8100A;
+    }
+
+    .jdb {
+        background: #FE7968 !important;
+    }
+
+    .jdborder {
+        border: 0.2rem solid #FFD387 !important;
     }
 </style>

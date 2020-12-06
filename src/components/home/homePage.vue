@@ -4,7 +4,7 @@
             <van-swipe-item v-for="(item, index) in banner_list" :key="index">
                 <img :src="item.image" alt="">
             </van-swipe-item>
-            <van-swipe-item>
+            <!-- <van-swipe-item>
                 <div class="rows-swiper">
                     <div class="rows-swiper-title">
                         本月累计发放酬金（元）
@@ -32,8 +32,15 @@
                         </p>
                     </div>
                 </div>
-            </van-swipe-item>
+            </van-swipe-item> -->
         </van-swipe>
+        <van-notice-bar left-icon="volume-o" :scrollable="false">
+            <van-swipe vertical class="notice-swipe" :autoplay="3000" :show-indicators="false">
+                <van-swipe-item v-for="(item, index) in tipList" :key="index"
+                    v-text="item.name + '**' + item.day + '推广' + item.app + item.valid_user_count + '有效户'">
+                </van-swipe-item>
+            </van-swipe>
+        </van-notice-bar>
         <div class="mt10 icon-box">
             <div class='icon-box-img' @click="goApp(item.app)" v-for="(item, index) in app" :key="index">
                 <img :src="item.image" alt="">
@@ -47,7 +54,7 @@
                 <div class="task-box-detail">
                     <!-- <p>支付宝新用户，领取话费红包、线下支付红包等任一新人红包并完成核销后，即可获得拉新奖励。</p> -->
                     <p v-text="item.desc"></p>
-                    <p>立即报名</p>
+                    <p @click="goApp(item.app)">立即报名</p>
                 </div>
                 <div class="task-box-price mt5">佣金单价</div>
                 <div class="task-box-content mt5">
@@ -93,16 +100,47 @@
             return {
                 msg: 'Welcome to your vueName',
                 app: [],
-                banner_list: []
+                banner_list: [],
+                tipList: [{
+                        name: '李',
+                        app: '支付宝',
+                        day: '一天前',
+                        valid_user_count: 20
+                    },
+                    {
+                        name: '王',
+                        app: '云闪付',
+                        day: '一天前',
+                        valid_user_count: 30
+                    },
+                    {
+                        name: '何',
+                        app: '京东',
+                        day: '一天前',
+                        valid_user_count: 10
+                    },
+                    {
+                        name: '张',
+                        app: '美团',
+                        day: '一天前',
+                        valid_user_count: 15
+                    }
+                ]
             }
         },
         created() {
+            this.$toast.loading({
+                message: '加载中...',
+                forbidClick: true,
+                duration: 0
+            })
             GetIndex().then(res => {
                 console.log(res)
                 this.app = res.data.data.app
                 this.banner_list = res.data.data.banner_list
-                console.log(this.data)
+                // console.log(this.data)
             })
+
         },
         methods: {
             goApp(app) {
@@ -111,6 +149,10 @@
                     this.$toast('正在开发中...')
                 } else if (app == 22) {
                     this.$router.push('alipay')
+                } else if (app == 31) {
+                    this.$router.push('mt')
+                } else if (app == 23) {
+                    this.$router.push('jd')
                 } else {
                     this.$toast('正在开发中...')
                 }
@@ -121,6 +163,9 @@
 
 <style scoped lang="scss">
     .my-swipe {
+        width: 100%;
+        height: 3.5rem;
+
         img {
             width: 100%;
             height: 3.5rem;
@@ -291,5 +336,20 @@
                 }
             }
         }
+    }
+
+    .notice-swipe {
+        height: .7rem;
+        line-height: .7rem;
+        font-size: .24rem;
+        color: #FF1B1B;
+        // background: #fff;
+        // margin-top: .2;
+    }
+
+    /deep/ .van-notice-bar {
+        margin-top: .2rem;
+        background: #fff;
+        color: #FF1B1B;
     }
 </style>
