@@ -1,6 +1,6 @@
 <template>
     <div class="alipay">
-        <pull-new-user :app='app' :is_active='is_active' :url='url' :smallTitle='smallTitle' @active-code='activeCode()' title='京东网页版拉新' content='请使用京东App扫一扫'></pull-new-user>
+        <pull-new-user :app='app' :is_active='is_active' :url='url' :smallTitle='smallTitle' @active-code='activeCode()' title='京东网页版拉新' content='请使用京东App扫一扫' :beCareful='beCareful' detailImg='../../../static/img/jdDetail.jpg'></pull-new-user>
     </div>
 </template>
 
@@ -19,9 +19,10 @@
             return {
                 is_active: 0,
                 url: '',
-                app: 31,
+                // app: 31,
                 smallTitle: '',
-                app: 23
+                app: 23,
+                beCareful: ['1、使用4G网络操作，同一个手机号同一个设备只能进行一次拉新;','2、购买的产品需要在“新人专享福利”页面里挑选完成首购。']
             }
         },
         created() {

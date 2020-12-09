@@ -1,20 +1,29 @@
 <template>
     <div class="pullNew">
         <!-- <van-nav-bar :left-text="title" class="red" left-arrow @click-left="$goBack()" /> -->
-        <div class="navbar" :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''">
+        <div class="navbar"
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''">
             <van-icon @click="$router.go(-1)" name="arrow-left" />
             <p @click="$router.go(-1)" v-text="title"></p>
         </div>
-        <div ref="title" class="title" :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''" v-text="smallTitle"></div>
-        <div class="sector" :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''"></div>
-        <div class='code-box' :class="app == 21 ? 'cloudborder' : app == 22 ? 'alipayborder' : app == 31 ? 'mtborder' : app == 23 ? 'jdborder' : ''">
-            <vue-qr v-if="is_active == 1" class="vue-qr" :logoSrc='config.logo' :style="{ width: '100%', height: '100%' }" :text="url" :logoScale="50" :size="300"></vue-qr>
-            <img v-else @click="$emit('active-code')" :style="{ width: '80%', height: '80%', padding: '10%' }" src="../../../static/img/goData.jpg" alt="">
+        <div ref="title" class="title"
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''"
+            v-text="smallTitle"></div>
+        <div class="sector"
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''"></div>
+        <div class='code-box'
+            :class="app == 21 ? 'cloudborder' : app == 22 ? 'alipayborder' : app == 31 ? 'mtborder' : app == 23 ? 'jdborder' : ''">
+            <vue-qr v-if="is_active == 1" class="vue-qr" :logoSrc='config.logo'
+                :style="{ width: '100%', height: '100%' }" :text="url" :logoScale="50" :size="300"></vue-qr>
+            <img v-else @click="$emit('active-code')" :style="{ width: '80%', height: '80%', padding: '10%' }"
+                src="../../../static/img/goData.jpg" alt="">
         </div>
         <div class="code-tip" v-if="is_active == 1" v-text="content"></div>
         <div class="code-tip" v-else @click="$emit('active-code')">点击激活</div>
-        <div class="take-out-content mt20" :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''">
-            <div class="take-out-content-one" :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : ''">
+        <div v-if="detailShow" class="take-out-content mt20"
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''">
+            <div class="take-out-content-one"
+                :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : ''">
                 <div class="take-out-content-two">
                     <div class="take-out-content-two-header">
                         <span>
@@ -22,20 +31,18 @@
                         </span>
                     </div>
                     <div class="take-out-content-two-con">
-                        <p>1、务必先通过浏览器扫码完成手机号的领奖，再去注册登录，保证领取到对应的奖品。若遇部分浏览器扫码后无法跳转激活，切换其他浏览器扫码。</p>
-                        <p>2、务必先通过浏览器扫码完成手机号的领奖，再去注册登录，保证领取到对应的奖品。若遇部分浏览器扫码后无法跳转激活，切换其他浏览器扫码。</p>
-                        <p>3、务必先通过浏览器扫码完成手机号的领奖，再去注册登录，保证领取到对应的奖品。若遇部分浏览器扫码后无法跳转激活，切换其他浏览器扫码。</p>
+                        <p v-for="(item, index) in beCareful" :key="index" v-text="item"></p>
                     </div>
-                    <div class="take-out-content-two-header mt25">
+                    <!-- <div class="take-out-content-two-header mt25">
                         <span>
                             支付宝拉新操作流程
                         </span>
-                    </div>
-                    <div class="take-out-content-two-con">
-                        <img src="http://jho2o.oss-cn-beijing.aliyuncs.com/test/2Oh4E92m.jpg" alt="">
-                    </div>
+                    </div> -->
                 </div>
             </div>
+        </div>
+        <div class="take-out-content-two-con" :class="app == 31 ? 'mt20' : ''">
+            <img :src="detailImg" alt="">
         </div>
     </div>
 </template>
@@ -57,13 +64,13 @@
         },
         created() {
             console.log(this.app)
-            if(this.app == 21) {
+            if (this.app == 21) {
                 this.config.logo = '../../../static/img/cloudIcon.png'
-            } else if(this.app == 22) {
+            } else if (this.app == 22) {
                 this.config.logo = '../../../static/img/alipayIcon.png'
-            } else if(this.app == 23) {
+            } else if (this.app == 23) {
                 this.config.logo = '../../../static/img/jdIcon.png'
-            } else if(this.app == 31){
+            } else if (this.app == 31) {
                 this.config.logo = '../../../static/img/mtIcon.png'
             }
         },
@@ -91,6 +98,18 @@
             content: {
                 type: String,
                 default: ''
+            },
+            beCareful: {
+                type: Array,
+                default: () => []
+            },
+            detailImg: {
+                type: String,
+                default: ''
+            },
+            detailShow: {
+                type: Boolean,
+                default: true
             }
         },
         methods: {
@@ -242,5 +261,13 @@
 
     .jdborder {
         border: 0.2rem solid #FFD387 !important;
+    }
+
+    .take-out-content-two-con {
+        width: 100%;
+
+        img {
+            width: 100%;
+        }
     }
 </style>

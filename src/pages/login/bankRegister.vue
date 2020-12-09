@@ -66,8 +66,18 @@
                 })
             },
             register() {
+                this.$toast.loading({
+                    message: '加载中...',
+                    forbidClick: true,
+                    duration: 0
+                })
                 Register(this.params).then(res => {
                     console.log(res)
+                    if(res.data.code == 0) {
+                        this.$toast.success('注册成功')
+                    } else {
+                        this.$toast.fail(res.data.msg)
+                    }
                 })
             },
             onSubmit() {

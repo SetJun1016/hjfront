@@ -37,16 +37,35 @@
         <van-notice-bar left-icon="volume-o" :scrollable="false">
             <van-swipe vertical class="notice-swipe" :autoplay="3000" :show-indicators="false">
                 <van-swipe-item v-for="(item, index) in tipList" :key="index"
-                    v-text="item.name + '**' + item.day + '推广' + item.app + item.valid_user_count + '有效户'">
+                    v-text="item.name  + item.day + '推广' + item.app + '有效户' + item.valid_user_count + '户'" >
                 </van-swipe-item>
             </van-swipe>
         </van-notice-bar>
-        <div class="mt10 icon-box">
+        <van-grid square class="mt10">
+            <van-grid-item @click="goApp(item.app)" v-for="(item, index) in app" :key="index" :icon="item.image"
+                :text="item.name" />
+            <van-grid-item icon="../../../static/img/snyg.png" text="苏宁易购" />
+            <van-grid-item icon="../../../static/img/jx.png" text="京喜" />
+            <van-grid-item icon="../../../static/img/zlsh.png" text="赞丽生活" />
+        </van-grid>
+        <!-- <div class="mt10 icon-box">
             <div class='icon-box-img' @click="goApp(item.app)" v-for="(item, index) in app" :key="index">
                 <img :src="item.image" alt="">
                 <p v-text="item.name"></p>
             </div>
-        </div>
+            <div class='icon-box-img'>
+                <img src="../../../static/img/snyg.png" alt="">
+                <p></p>
+            </div>
+            <div class='icon-box-img'>
+                <img src="../../../static/img/jx.png" alt="">
+                <p>京喜</p>
+            </div>
+            <div class='icon-box-img'>
+                <img src="../../../static/img/zlsh.png" alt="">
+                <p>赞丽生活</p>
+            </div>
+        </div> -->
         <div class="mt10 task">
             <div class="task-title">任务推荐</div>
             <div class="task-box mt10" v-for="(item, index) in app" :key="index">
@@ -101,31 +120,10 @@
                 msg: 'Welcome to your vueName',
                 app: [],
                 banner_list: [],
-                tipList: [{
-                        name: '李',
-                        app: '支付宝',
-                        day: '一天前',
-                        valid_user_count: 20
-                    },
-                    {
-                        name: '王',
-                        app: '云闪付',
-                        day: '一天前',
-                        valid_user_count: 30
-                    },
-                    {
-                        name: '何',
-                        app: '京东',
-                        day: '一天前',
-                        valid_user_count: 10
-                    },
-                    {
-                        name: '张',
-                        app: '美团',
-                        day: '一天前',
-                        valid_user_count: 15
-                    }
-                ]
+                tipList: [],
+                firstName: "赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛奚范彭郎鲁韦昌马苗凤花方俞任袁柳酆鲍史唐费廉岑薛雷贺倪汤滕殷罗毕郝邬安常乐于时傅皮卞齐康伍余元卜顾孟平黄和穆萧尹姚邵湛汪祁毛禹狄米贝明臧计伏成戴谈宋茅庞熊纪舒屈项祝董梁杜阮蓝闵席季麻强贾路娄危江童颜郭梅盛林刁钟徐邱骆高夏蔡田樊胡凌霍虞万支柯咎管卢莫经房裘缪干解应宗宣丁贲邓郁单杭洪包诸左石崔吉钮龚程嵇邢滑裴陆荣翁荀羊於惠甄魏加封芮羿储靳汲邴糜松井段富巫乌焦巴弓牧隗山谷车侯宓蓬全郗班仰秋仲伊宫宁仇栾暴甘钭厉戎祖武符刘姜詹束龙叶幸司韶郜黎蓟薄印宿白怀蒲台从鄂索咸籍赖卓蔺屠蒙池乔阴郁胥能苍双闻莘党翟谭贡劳逄姬申扶堵冉宰郦雍却璩桑桂濮牛寿通边扈燕冀郏浦尚农温别庄晏柴瞿阎充慕连茹习宦艾鱼容向古易慎戈廖庚终暨居衡步都耿满弘匡国文寇广禄阙东殴殳沃利蔚越夔隆师巩厍聂晁勾敖融冷訾辛阚那简饶空曾毋沙乜养鞠须丰巢关蒯相查后江红游竺权逯盖益桓公万俟司马上官欧阳夏侯诸葛闻人东方赫连皇甫尉迟公羊澹台公冶宗政濮阳淳于仲孙太叔申屠公孙乐正轩辕令狐钟离闾丘长孙慕容鲜于宇文司徒司空亓官司寇仉督子车颛孙端木巫马公西漆雕乐正壤驷公良拓拔夹谷宰父谷粱晋楚阎法汝鄢涂钦段干百里东郭南门呼延归海羊舌微生岳帅缑亢况后有琴梁丘左丘东门西门商牟佘佴伯赏南宫墨哈谯笪年爱阳佟第五言福百家姓续",
+                girl: "秀娟英华慧巧美娜静淑惠珠翠雅芝玉萍红娥玲芬芳燕彩春菊兰凤洁梅琳素云莲真环雪荣爱妹霞香月莺媛艳瑞凡佳嘉琼勤珍贞莉桂娣叶璧璐娅琦晶妍茜秋珊莎锦黛青倩婷姣婉娴瑾颖露瑶怡婵雁蓓纨仪荷丹蓉眉君琴蕊薇菁梦岚苑婕馨瑗琰韵融园艺咏卿聪澜纯毓悦昭冰爽琬茗羽希宁欣飘育滢馥筠柔竹霭凝晓欢霄枫芸菲寒伊亚宜可姬舒影荔枝思丽伟刚勇毅俊峰强军平保东文辉力明永健世广志义兴良海山仁波宁贵福生龙元全国胜学祥才发武新利清飞彬富顺信子杰涛昌成康星光天达安岩中茂进林有坚和彪博诚先敬震振壮会思群豪心邦承乐绍功松善厚庆磊民友裕河哲江超浩亮政谦亨奇固之轮翰朗伯宏言若鸣朋斌梁栋维启克伦翔旭鹏泽晨辰士以建家致树炎德行时泰盛雄琛钧冠策腾楠榕风航弘甄魏加封芮羿储靳汲邴糜松井段富巫乌焦巴弓牧隗山谷车侯宓蓬全郗班仰秋仲伊宫宁仇栾暴甘钭厉戎祖武符刘姜詹束龙叶幸司韶郜黎蓟薄印宿白怀蒲台从鄂索咸籍赖卓蔺屠蒙池乔阴郁胥能苍双闻莘党翟谭贡劳逄姬申扶堵冉宰郦雍却璩桑桂濮牛寿通边扈文寇广禄阙东殴殳沃利蔚越夔隆师巩厍聂晁勾敖融冷訾辛阚那简饶空曾毋沙乜养鞠须丰巢关蒯相查后江红游竺权逯盖益桓公万俟司马上官欧阳夏侯诸葛闻人东方赫连皇甫尉迟公羊澹台公冶宗政濮阳淳于仲孙太叔申屠公孙乐正轩辕令狐钟离闾丘长孙慕",
+                apps: ['支付宝', '云闪付', '美团', '京东']
             }
         },
         created() {
@@ -140,7 +138,9 @@
                 this.banner_list = res.data.data.banner_list
                 // console.log(this.data)
             })
-
+            for(let k = 0; k < 20; k++) {
+                this.tipList.push(this.getRandomText())
+            }
         },
         methods: {
             goApp(app) {
@@ -155,6 +155,29 @@
                     this.$router.push('jd')
                 } else {
                     this.$toast('正在开发中...')
+                }
+            },
+            getRandomText() {
+                // console.log(Math.floor(Math.random() * 568))
+                // console.log(this.firstName.length)
+                // console.log(this.girl.length)
+                let sum = Math.floor(Math.random() * 519)
+                let sum2 = Math.floor(Math.random() * 568)
+                // let sum3 = Math.floor(Math.random() * 568)
+                let t = this.firstName.substring(sum, sum + 1)
+                let t2 = this.girl.substring(sum2, sum2 + 1)
+                // let t3 = this.girl.substring(sum3, sum3 + 1)
+                let name = t + '**' + t2
+                let app = this.apps[Math.floor(Math.random() * 4)]
+                let day = '昨日'
+                let valid_user_count = Math.floor(Math.random() * 40)
+                // console.log(t)
+                // console.log(this.boy.length)
+                return {
+                    name: name,
+                    app: app,
+                    day: day,
+                    valid_user_count: valid_user_count
                 }
             }
         }
@@ -217,32 +240,33 @@
         margin-bottom: 1.2rem;
     }
 
-    .icon-box {
-        height: 1.8rem;
-        background: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        padding: 0 .3rem;
+    // .icon-box {
+    //     // height: 1.8rem;
+    //     background: #fff;
+    //     display: flex;
+    //     align-items: center;
+    //     flex-wrap: wrap;
+    //     justify-content: space-around;
+    //     padding: 0 .3rem;
 
-        .icon-box-img {
-            width: 1.2rem;
-            height: 1.4rem;
-            text-align: center;
-            font-size: .24rem;
-            // margin-top: .2rem;
+    //     .icon-box-img {
+    //         width: 1.2rem;
+    //         height: 1.4rem;
+    //         text-align: center;
+    //         font-size: .24rem;
+    //         // margin-top: .2rem;
 
-            img {
-                width: .8rem;
-                height: .8rem;
-                // height: 100%;
-            }
+    //         img {
+    //             width: .8rem;
+    //             height: .8rem;
+    //             // height: 100%;
+    //         }
 
-            p {
-                margin-top: .1rem;
-            }
-        }
-    }
+    //         p {
+    //             margin-top: .1rem;
+    //         }
+    //     }
+    // }
 
     .task {
         background: #fff;

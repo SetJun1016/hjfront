@@ -18,7 +18,7 @@
                 <van-icon size='12px' name="arrow" />
             </div>
             <div class="mt20">
-                <van-button round block type="info" native-type="submit">
+                <van-button round block type="danger" native-type="submit">
                     确定
                 </van-button>
             </div>
@@ -97,7 +97,7 @@
     }
 
     header {
-        color: #0485fe;
+        color: #FF1B1B;
         font-size: .7rem;
         margin-top: 1.2rem;
     }

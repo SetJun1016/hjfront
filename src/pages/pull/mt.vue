@@ -1,7 +1,7 @@
 <template>
     <div class="alipay">
         <pull-new-user :app='app' :is_active='is_active' :url='url' :smallTitle='smallTitle' title='美团拉新' @active-code='activeCode()'
-            content='请使用美团App扫一扫'></pull-new-user>
+            content='请使用美团App扫一扫' detailImg='../../../static/img/mtDetail.jpg' :detailShow='false'></pull-new-user>
     </div>
 </template>
 
