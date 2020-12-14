@@ -11,7 +11,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/apis': {
-                target: 'http://tui.wudaojz.com',
+                target: 'http://cstui.wudaojz.com',
                 changeOrigin: true, //是否跨域
                 pathRewrite: {
                     '^/apis': '/' //需要rewrite重写的
@@ -56,7 +56,7 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
+        assetsPublicPath: '/v',
 
         /**
          * Source Maps

@@ -23,5 +23,13 @@ export default [
         meta: {
             requireAuth: true
         }
+    },
+    {
+        path: '/jdbt',
+        name: 'jdbt',
+        component: resolve => require(['@/pages/pull/jdbt'], resolve),
+        meta: {
+            requireAuth: true
+        }
     }
 ]

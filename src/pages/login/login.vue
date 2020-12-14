@@ -1,7 +1,9 @@
 <template>
     <div class="login">
         <!-- <img src="@/assets/img/hi.png" alt=""> -->
-        <div class="login-title">推广端</div>
+        <!-- <van-icon class="mt10" name="arrow-left" /><span>返回</span> -->
+        <van-nav-bar left-text="返回" left-arrow @click-left="$goBack()" />
+        <div class="login-title">登录</div>
         <van-form class="mt40" @submit="onSubmit">
             <van-field label-width='4em' class="brt" v-model="params.phone" left-icon='manager' name="手机号" label="手机号"
                 placeholder="请输入手机号" :rules="[{ required: true, message: '请填写11位数字的手机号' }]" />
@@ -108,4 +110,11 @@
             border-radius: 0 0 6px 6px;
         }
     }
+
+    /deep/ .van-nav-bar .van-icon,
+    /deep/ .van-nav-bar__text {
+        color: #FF1B1B !important
+    }
+
+
 </style>

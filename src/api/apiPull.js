@@ -44,11 +44,28 @@ export function GetJdCode(data) {
         data
     })
 }
+// 获取京东白天条推广码
+export function GetJdWhiteQr(data) {
+    return request({
+        url: 'jdWhiteOR',
+        method: 'post',
+        data
+    })
+}
 
 // 激活京东推广码
 export function ActiveJdCode(data) {
     return request({
         url: 'jdStoreActive',
+        method: 'post',
+        data
+    })
+}
+
+// 激活京东推白条广码
+export function ActiveJdWhite(data) {
+    return request({
+        url: 'jdWhiteActive',
         method: 'post',
         data
     })

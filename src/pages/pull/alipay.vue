@@ -49,9 +49,10 @@
                 ActiveAlipayCode({
                     token: localStorage.getItem('token')
                 }).then(res => {
-                    console.log(res)
+                    console.log(res.data.data)
                     this.is_active = res.data.data[0].is_active
                     this.url = res.data.data[0].url
+                    console.log(this.is_active)
                     if (this.is_active === 0) {
                         this.smallTitle = '激活码'
                     } else {

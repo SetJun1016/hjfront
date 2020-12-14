@@ -1,6 +1,7 @@
 <template>
     <div class="frozen">
         <van-nav-bar title="余额账户" left-text="返回" fixed placeholder class="mb10" left-arrow @click-left="$goBack()" />
+        <van-empty v-if="loadingShow" description="暂无明细" />
         <div class="frozen-box" v-for="(item, index) in list" :key="index">
             <p class="dfb">
                 <span v-text='item.desc'></span>
@@ -24,7 +25,8 @@
         data() {
             return {
                 list: [],
-                page: 1
+                page: 1,
+                loadingShow: false
             }
         },
         created() {
@@ -34,6 +36,9 @@
             }).then(res => {
                 console.log(res)
                 this.list = res.data.data.data
+                if(res.data.data == '暂无数据') {
+                    this.loadingShow = true
+                }
             })
         }
     }

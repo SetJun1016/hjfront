@@ -7,7 +7,7 @@
                 <div class="info">
                     <p v-text="'用户名：' + name"></p>
                     <p v-text="'手机号：' + phone"></p>
-                    <p v-text="'身份：' + (scope == 38 ? '社会推广人' : '')"></p>
+                    <p v-text="'身份：' + (scope == 38 ? '推广人' : '')"></p>
                 </div>
             </div>
             <div class="list-list dfs" @click="$router.push('walletCenter')">

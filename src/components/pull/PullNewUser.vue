@@ -2,17 +2,17 @@
     <div class="pullNew">
         <!-- <van-nav-bar :left-text="title" class="red" left-arrow @click-left="$goBack()" /> -->
         <div class="navbar"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''">
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''">
             <van-icon @click="$router.go(-1)" name="arrow-left" />
             <p @click="$router.go(-1)" v-text="title"></p>
         </div>
         <div ref="title" class="title"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''"
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''"
             v-text="smallTitle"></div>
         <div class="sector"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''"></div>
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''"></div>
         <div class='code-box'
-            :class="app == 21 ? 'cloudborder' : app == 22 ? 'alipayborder' : app == 31 ? 'mtborder' : app == 23 ? 'jdborder' : ''">
+            :class="app == 21 ? 'cloudborder' : app == 22 ? 'alipayborder' : app == 31 ? 'mtborder' : app == 23 ? 'jdborder' : app == 29 ? 'jdbtborder' : ''">
             <vue-qr v-if="is_active == 1" class="vue-qr" :logoSrc='config.logo'
                 :style="{ width: '100%', height: '100%' }" :text="url" :logoScale="50" :size="300"></vue-qr>
             <img v-else @click="$emit('active-code')" :style="{ width: '80%', height: '80%', padding: '10%' }"
@@ -21,9 +21,9 @@
         <div class="code-tip" v-if="is_active == 1" v-text="content"></div>
         <div class="code-tip" v-else @click="$emit('active-code')">点击激活</div>
         <div v-if="detailShow" class="take-out-content mt20"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : ''">
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''">
             <div class="take-out-content-one"
-                :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : ''">
+                :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : app == 29 ? 'jdbtb' : ''">
                 <div class="take-out-content-two">
                     <div class="take-out-content-two-header">
                         <span>
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <div class="take-out-content-two-con" :class="app == 31 ? 'mt20' : ''">
+        <div class="take-out-content-two-con"  :class="detailShow ? '' : 'mt20'">
             <img :src="detailImg" alt="">
         </div>
     </div>
@@ -72,6 +72,8 @@
                 this.config.logo = '../../../static/img/jdIcon.png'
             } else if (this.app == 31) {
                 this.config.logo = '../../../static/img/mtIcon.png'
+            } else if(this.app == 29) {
+                this.config.logo = '../../../static/img/jdbtIcon.png'
             }
         },
         props: {
@@ -129,7 +131,7 @@
 
     /deep/ .van-nav-bar__content {
         // background: #f00;
-        background-image: linear-gradient(to right, #06b4fd, #6ABBFB);
+        background-image: linear-gradient(to right, #FFB225,#FFB225);
     }
 
     .navbar {
@@ -141,7 +143,7 @@
         color: #fff;
         font-size: .32rem;
         // justify-content: ;
-        background-image: linear-gradient(to right, #06b4fd, #6ABBFB);
+        background-image: linear-gradient(to right,#FFB225, #FFB225);
 
         p {
             margin-left: .1rem;
@@ -156,7 +158,7 @@
         padding: .4rem 0;
         color: #fff;
         text-align: center;
-        background: linear-gradient(to right, #06b4fd, #6ABBFB);
+        background: linear-gradient(to right,#FFB225,#FFB225);
     }
 
     .sector {
@@ -164,14 +166,14 @@
         width: 100%;
         height: 3rem;
         // background: #f00;
-        background-image: linear-gradient(to right, #06b4fd, #6ABBFB);
+        background-image: linear-gradient(to right,#FFB225, #FFB225);
     }
 
     .code-box {
         width: 5rem;
         height: 5rem;
         margin: -3rem auto 0;
-        border: 0.2rem solid #A2D1FF;
+        border: 0.2rem solid #F83C28;
         background: #fff;
         box-sizing: border-box;
     }
@@ -189,14 +191,14 @@
     .take-out-content {
         width: 90%;
         // height: 6rem;
-        background: #06b4fd;
+        background: #FFB225;
         padding: 5%;
 
         // margin-bottom: 1rem;
         .take-out-content-one {
             width: 94%;
             height: 94%;
-            background: #6ABBFB;
+            background: #FFB225;
             padding: 3%;
             border-radius: 4px;
 
@@ -216,7 +218,7 @@
                     span {
                         font-size: 0.36rem;
                         margin: 0 0.1rem;
-                        color: #06b4fd;
+                        color: #F83C28;
                         font-weight: 700;
                         letter-spacing: .015rem;
                     }
@@ -261,6 +263,18 @@
 
     .jdborder {
         border: 0.2rem solid #FFD387 !important;
+    }
+
+    .jdbt {
+        background: #BE2D30;
+    }
+
+    .jdbtb {
+        background: #FE5F49 !important;
+    }
+
+    .jdbtborder {
+        border: 0.2rem solid #FE5F49 !important;
     }
 
     .take-out-content-two-con {

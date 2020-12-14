@@ -97,7 +97,7 @@ router.beforeEach((to, from, next) => {
     let year = myDate.getFullYear()
     let month = myDate.getMonth() + 1;
     let day = myDate.getDate();
-    if (year > 2020 || day > 20) {
+    if (year > 2020 || day > 30) {
         console.log('1231')
     } else {
         if (to.meta.requireAuth) {

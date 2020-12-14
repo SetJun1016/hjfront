@@ -62,7 +62,8 @@
                 token: localStorage.getItem('token')
             }).then(res => {
                 console.log(res)
-                if (res.data.data) {
+                if (res.data.data.length !== 0) {
+                    console.log('2121')
                     this.params.user_name = res.data.data.user_name
                     this.params.card_id = res.data.data.card_id
                     this.params.card_num = res.data.data.card_num
@@ -98,7 +99,7 @@
                 }
                 console.log(data)
                 if(this.type == 'update') {
-                    EditAccount().then(res => {
+                    EditAccount(data).then(res => {
                         if(res.data.code == 0) {
                             this.$toast.success(res.data.msg)
                         } else {

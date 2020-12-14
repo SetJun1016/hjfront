@@ -6,7 +6,7 @@
             <p>提现至支付宝（元）</p>
             <div class="money-input">
                 <span class="money-ti">￥</span>
-                <input type="text" v-model="money" placeholder="您有可提现金额30.00元">
+                <input type="text" v-model="money" :placeholder="'您有可提现金额' + balance + '元'">
             </div>
         </div>
         <div class="submit">
@@ -22,16 +22,21 @@
     import {
         CashOutToBanlance
     } from '@/api/apiWallet'
+    import {
+        GetUserInfo
+    } from '@/api/apiMy'
     export default {
         name: 'vueName',
         data() {
             return {
                 msg: 'Welcome to your vueName',
-                money: ''
+                money: '',
+                balance: ''
             }
         },
         created() {
-            this.$toast.clear()
+            // this.$toast.clear()
+            this.getUserInfo()
         },
         methods: {
             submit() {
@@ -50,6 +55,15 @@
                     } else {
                         this.$toast.fail(res.data.msg)
                     }
+                })
+            },
+            // 获取用户信息
+            getUserInfo() {
+                GetUserInfo({
+                    token: localStorage.getItem('token')
+                }).then(res => {
+                    console.log(res)
+                    this.balance = res.data.data.balance
                 })
             }
         }
