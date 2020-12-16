@@ -10,7 +10,8 @@
             :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''"
             v-text="smallTitle"></div>
         <div class="sector"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''"></div>
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''">
+        </div>
         <div class='code-box'
             :class="app == 21 ? 'cloudborder' : app == 22 ? 'alipayborder' : app == 31 ? 'mtborder' : app == 23 ? 'jdborder' : app == 29 ? 'jdbtborder' : ''">
             <vue-qr v-if="is_active == 1" class="vue-qr" :logoSrc='config.logo'
@@ -22,6 +23,14 @@
         <div class="code-tip" v-else @click="$emit('active-code')">点击激活</div>
         <div v-if="detailShow" class="take-out-content mt20"
             :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''">
+            <div v-if="app == 21" @click="local">
+                <div class="cloud box-cloud">
+                    <p>云闪付拉新视频教程</p>
+                    <div class="start">
+                        <img src="../../../static/img/start.png" alt="">
+                    </div>
+                </div>
+            </div>
             <div class="take-out-content-one"
                 :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : app == 29 ? 'jdbtb' : ''">
                 <div class="take-out-content-two">
@@ -41,8 +50,16 @@
                 </div>
             </div>
         </div>
-        <div class="take-out-content-two-con"  :class="detailShow ? '' : 'mt20'">
+        <div class="take-out-content-two-con" :class="detailShow ? '' : 'mt20'">
             <img :src="detailImg" alt="">
+        </div>
+        <div v-if="app == 29" @click="local">
+            <div class="bt box-cloud">
+                <p>京东金融普通版白条拉新视频教程</p>
+                <div class="start">
+                    <img src="../../../static/img/start.png" alt="">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -72,7 +89,7 @@
                 this.config.logo = '../../../static/img/jdIcon.png'
             } else if (this.app == 31) {
                 this.config.logo = '../../../static/img/mtIcon.png'
-            } else if(this.app == 29) {
+            } else if (this.app == 29) {
                 this.config.logo = '../../../static/img/jdbtIcon.png'
             }
         },
@@ -117,6 +134,14 @@
         methods: {
             onClickLeft() {
 
+            },
+            local() {
+                if(app == 21) {
+                    window.location.href =
+                        'http://mp.weixin.qq.com/mp/video?__biz=MzkzNDE4ODE5Mg==&mid=100000005&sn=4c71aafd6698aa25a1470a5b2184c0af&vid=wxv_1651734696180940801&idx=1&vidsn=0446b1964070fa7463d57a0f0c325c76&fromid=1&xtrack=1&scene=0&subscene=93&clicktime=1608128272&enterid=1608128272&sessionid=0&ascene=7&realreporttime=1608128272631&forceh5=1'
+                } else {
+                    window.location.href = 'http://mp.weixin.qq.com/mp/video?__biz=MzkzNDE4ODE5Mg==&mid=100000007&sn=8b135daef608343cdb284f43c93464f5&vid=wxv_1651774212530864131&idx=1&vidsn=6f95f1826ec9387a4c4d4e4b2de20313&fromid=1&xtrack=1&scene=0&subscene=93&clicktime=1608130944&enterid=1608130944&sessionid=0&ascene=7&realreporttime=1608130945081&forceh5=1'
+                }
             }
         },
     }
@@ -131,7 +156,7 @@
 
     /deep/ .van-nav-bar__content {
         // background: #f00;
-        background-image: linear-gradient(to right, #FFB225,#FFB225);
+        background-image: linear-gradient(to right, #FFB225, #FFB225);
     }
 
     .navbar {
@@ -143,7 +168,7 @@
         color: #fff;
         font-size: .32rem;
         // justify-content: ;
-        background-image: linear-gradient(to right,#FFB225, #FFB225);
+        background-image: linear-gradient(to right, #FFB225, #FFB225);
 
         p {
             margin-left: .1rem;
@@ -158,7 +183,7 @@
         padding: .4rem 0;
         color: #fff;
         text-align: center;
-        background: linear-gradient(to right,#FFB225,#FFB225);
+        background: linear-gradient(to right, #FFB225, #FFB225);
     }
 
     .sector {
@@ -166,7 +191,7 @@
         width: 100%;
         height: 3rem;
         // background: #f00;
-        background-image: linear-gradient(to right,#FFB225, #FFB225);
+        background-image: linear-gradient(to right, #FFB225, #FFB225);
     }
 
     .code-box {
@@ -178,6 +203,10 @@
         box-sizing: border-box;
     }
 
+    .bt {
+        background: #3493D5;
+    }
+
     .code-tip {
         width: 5rem;
         height: .8rem;
@@ -186,6 +215,29 @@
         margin: 0 auto;
         box-shadow: 0 0 10px #e5e5e5;
         box-sizing: border-box;
+    }
+
+    .box-cloud {
+        height: 4rem;
+        color: #fff;
+        text-align: center;
+        font-size: .34rem;
+        padding: .3rem 0;
+
+        .start {
+            width: 80%;
+            margin: .5rem auto;
+            background: #000;
+            height: 3rem;
+            border-radius: 6px;
+            // line-height: 3rem;
+
+            img {
+                width: 1rem;
+                height: 1rem;
+                margin-top: 1rem;
+            }
+        }
     }
 
     .take-out-content {
@@ -239,6 +291,10 @@
                 }
             }
         }
+    }
+
+    .cloud {
+        background: #f00;
     }
 
     .mt {

@@ -52,6 +52,23 @@ export function GetJdWhiteQr(data) {
         data
     })
 }
+// 获取云闪付推广码
+export function GetYunCode(data) {
+    return request({
+        url: 'bankUnionQR',
+        method: 'post',
+        data
+    })
+}
+
+// 激活云闪付推广码
+export function ActiveYunCode(data) {
+    return request({
+        url: 'bankUnionActive',
+        method: 'post',
+        data
+    })
+}
 
 // 激活京东推广码
 export function ActiveJdCode(data) {

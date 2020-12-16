@@ -159,7 +159,8 @@
             goApp(app) {
                 if (app == 21) {
                     // Toast('正在开发中')
-                    this.$toast('正在维护中...')
+                    // this.$toast('正在维护中...')
+                    this.$router.push('yun')
                 } else if (app == 22) {
                     this.$router.push('alipay')
                 } else if (app == 31) {

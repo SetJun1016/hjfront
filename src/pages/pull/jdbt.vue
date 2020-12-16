@@ -1,6 +1,6 @@
 <template>
     <div class="alipay">
-        <pull-new-user :app='app' :is_active='is_active' :url='url' :smallTitle='smallTitle' @active-code='activeCode()' title='京东金融普通版白条拉新' content='请使用京东金融App扫一扫' :beCareful='beCareful' detailImg='../../../static/img/jdbtDetail.jpg' :detailShow='false'></pull-new-user>
+        <pull-new-user :app='app' :is_active='is_active' :url='url' :smallTitle='smallTitle' @active-code='activeCode()' title='京东金融普通版白条拉新' content='请使用京东金融App扫一扫' :beCareful='beCareful' detailImg='../../../static/img/jdbtDetail.png' :detailShow='false'></pull-new-user>
     </div>
 </template>
 

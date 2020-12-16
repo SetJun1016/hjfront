@@ -31,5 +31,13 @@ export default [
         meta: {
             requireAuth: true
         }
-    }
+    },
+    {
+        path: '/yun',
+        name: 'yun',
+        component: resolve => require(['@/pages/pull/cloud'], resolve),
+        meta: {
+            requireAuth: true
+        }
+    },
 ]
