@@ -30,7 +30,7 @@ let vm = new Vue({
 const debug = process.env.NODE_ENV !== 'production'
 // 创建一个axios实例
 const axiosService = axios.create({
-    baseURL: debug ? 'apis/api' : 'http://tui.wudaojz.com/api', // url = base url + request url
+    baseURL: debug ? 'apis/api' : 'http://zstui.wudaojz.com/api', // url = base url + request url
     // baseURL: 'api/', // url = base url + request url
     timeout: 20000 // 设置超时时间为5s
 });

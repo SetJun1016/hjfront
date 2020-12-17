@@ -2,18 +2,18 @@
     <div class="pullNew">
         <!-- <van-nav-bar :left-text="title" class="red" left-arrow @click-left="$goBack()" /> -->
         <div class="navbar"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''">
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : ''">
             <van-icon @click="$router.go(-1)" name="arrow-left" />
             <p @click="$router.go(-1)" v-text="title"></p>
         </div>
         <div ref="title" class="title"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''"
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : ''"
             v-text="smallTitle"></div>
         <div class="sector"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''">
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : ''">
         </div>
         <div class='code-box'
-            :class="app == 21 ? 'cloudborder' : app == 22 ? 'alipayborder' : app == 31 ? 'mtborder' : app == 23 ? 'jdborder' : app == 29 ? 'jdbtborder' : ''">
+            :class="app == 21 ? 'cloudborder' : app == 22 ? 'alipayborder' : app == 31 ? 'mtborder' : app == 23 ? 'jdborder' : app == 29 ? 'jdbtborder' : app == 34 ? 'snygborder' : ''">
             <vue-qr v-if="is_active == 1" class="vue-qr" :logoSrc='config.logo'
                 :style="{ width: '100%', height: '100%' }" :text="url" :logoScale="50" :size="300"></vue-qr>
             <img v-else @click="$emit('active-code')" :style="{ width: '80%', height: '80%', padding: '10%' }"
@@ -50,12 +50,27 @@
                 </div>
             </div>
         </div>
+        <div v-if="app == 21" class="cloud" :style="{ padding: '.3rem 0 .5rem 0' }">
+            <p class="tc" :style="{ padding: '.3rem', color: '#fff', fontSize: '0.45rem' }">云闪付付款码</p>
+            <!-- <img :style="{width: '100%' }" src="../../../static/img/pay.jpg" alt=""> -->
+            <vue-qr class="vue-qr" :logoSrc='config.logo'
+                :style="{ width: '80%', height: '80%', marginLeft: '10%' }" text="https://mf.jlpay.com/?qrCode=84934014816K04N2020081818273710314701" :logoScale="50" :size="300"></vue-qr>
+                <!-- <div>打开云闪付APP、银行APP</div> -->
+        </div>
         <div class="take-out-content-two-con" :class="detailShow ? '' : 'mt20'">
             <img :src="detailImg" alt="">
         </div>
         <div v-if="app == 29" @click="local">
             <div class="bt box-cloud">
                 <p>京东金融普通版白条拉新视频教程</p>
+                <div class="start">
+                    <img src="../../../static/img/start.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div v-if="app == 31" @click="local">
+            <div class="mt-box box-cloud">
+                <p>美团拉新视频教程</p>
                 <div class="start">
                     <img src="../../../static/img/start.png" alt="">
                 </div>
@@ -91,6 +106,8 @@
                 this.config.logo = '../../../static/img/mtIcon.png'
             } else if (this.app == 29) {
                 this.config.logo = '../../../static/img/jdbtIcon.png'
+            } else if(this.app == 34) {
+                this.config.logo = '../../../static/img/snyg.png'
             }
         },
         props: {
@@ -136,11 +153,15 @@
 
             },
             local() {
-                if(app == 21) {
+                if (this.app == 21) {
                     window.location.href =
                         'http://mp.weixin.qq.com/mp/video?__biz=MzkzNDE4ODE5Mg==&mid=100000005&sn=4c71aafd6698aa25a1470a5b2184c0af&vid=wxv_1651734696180940801&idx=1&vidsn=0446b1964070fa7463d57a0f0c325c76&fromid=1&xtrack=1&scene=0&subscene=93&clicktime=1608128272&enterid=1608128272&sessionid=0&ascene=7&realreporttime=1608128272631&forceh5=1'
-                } else {
-                    window.location.href = 'http://mp.weixin.qq.com/mp/video?__biz=MzkzNDE4ODE5Mg==&mid=100000007&sn=8b135daef608343cdb284f43c93464f5&vid=wxv_1651774212530864131&idx=1&vidsn=6f95f1826ec9387a4c4d4e4b2de20313&fromid=1&xtrack=1&scene=0&subscene=93&clicktime=1608130944&enterid=1608130944&sessionid=0&ascene=7&realreporttime=1608130945081&forceh5=1'
+                } else if (this.app == 29) {
+                    window.location.href =
+                        'http://mp.weixin.qq.com/mp/video?__biz=MzkzNDE4ODE5Mg==&mid=100000007&sn=8b135daef608343cdb284f43c93464f5&vid=wxv_1651774212530864131&idx=1&vidsn=6f95f1826ec9387a4c4d4e4b2de20313&fromid=1&xtrack=1&scene=0&subscene=93&clicktime=1608130944&enterid=1608130944&sessionid=0&ascene=7&realreporttime=1608130945081&forceh5=1'
+                } else if (this.app == 31) {
+                    window.location.href =
+                        'http://mp.weixin.qq.com/mp/video?__biz=MzkzNDE4ODE5Mg==&mid=100000004&sn=f97dfe8cf5bac77f11cbffd30cb0b6a5&vid=wxv_1651729536264273925&idx=1&vidsn=36fc692f0239a996e1580cf9bbc92598&fromid=1&xtrack=1&scene=0&subscene=93&clicktime=1608131568&enterid=1608131568&sessionid=0&ascene=7&realreporttime=1608131568618&forceh5=1'
                 }
             }
         },
@@ -205,6 +226,10 @@
 
     .bt {
         background: #3493D5;
+    }
+
+    .mt-box {
+        background: #FE6F0F;
     }
 
     .code-tip {
@@ -292,13 +317,20 @@
             }
         }
     }
+    .snyg {
+        background: #2481FA;
+    }
 
     .cloud {
-        background: #f00;
+        background: #E4373B;
+    }
+
+    .snygborder {
+        border: .2rem solid #FDB133 !important;
     }
 
     .mt {
-        background: #F7A623;
+        background: #FE6F0F;
     }
 
     .mtb {

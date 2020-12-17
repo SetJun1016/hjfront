@@ -61,6 +61,24 @@ export function GetYunCode(data) {
     })
 }
 
+// 获取苏宁推广码
+export function GetSnCode(data) {
+    return request({
+        url: 'suNingQR',
+        method: 'post',
+        data
+    })
+}
+
+// 激活苏宁推广码
+export function ActiveSnCode(data) {
+    return request({
+        url: 'snActive',
+        method: 'post',
+        data
+    })
+}
+
 // 激活云闪付推广码
 export function ActiveYunCode(data) {
     return request({

@@ -169,6 +169,8 @@
                     this.$router.push('jd')
                 } else if (app == 29) {
                     this.$router.push('jdbt')
+                } else if(app == 34) {
+                    this.$router.push('snyg')
                 } else {
                     this.$toast('正在维护中...')
                 }

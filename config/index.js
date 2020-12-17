@@ -12,7 +12,7 @@ module.exports = {
         proxyTable: {
             '/apis': {
                 // target: 'http://cstui.wudaojz.com',
-                target: 'http://tui.wudaojz.com',
+                target: 'http://zstui.wudaojz.com',
                 changeOrigin: true, //是否跨域
                 pathRewrite: {
                     '^/apis': '/' //需要rewrite重写的
@@ -53,9 +53,9 @@ module.exports = {
 
     build: {
         // Template for index.html
-        index: path.resolve(__dirname, '../dist/index.html'),
+        index: path.resolve(__dirname, '../zstui推广/index.html'),
         // Paths
-        assetsRoot: path.resolve(__dirname, '../dist'),
+        assetsRoot: path.resolve(__dirname, '../zstui推广'),
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
 

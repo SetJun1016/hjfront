@@ -40,4 +40,12 @@ export default [
             requireAuth: true
         }
     },
+    {
+        path: '/snyg',
+        name: 'snyg',
+        component: resolve => require(['@/pages/pull/snyg'], resolve),
+        meta: {
+            requireAuth: true
+        }
+    },
 ]
