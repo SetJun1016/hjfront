@@ -72,7 +72,7 @@
                     <p v-text="item.desc"></p>
                     <p @click="goApp(item.app)">立即领取</p>
                 </div>
-                <div class="task-box-price mt5">佣金单价:{{ item.unit_price }}</div>
+                <div class="task-box-price mt5">佣金单价:{{ item.unit_price + '元/有效户' }}</div>
                 <!-- <div class="task-box-content mt5"> -->
                 <!-- <div class="dfl contentW50">
                         <p>有效用户数:</p>

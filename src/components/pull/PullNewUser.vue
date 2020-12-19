@@ -21,8 +21,8 @@
         </div>
         <div class="code-tip" v-if="is_active == 1" v-text="content"></div>
         <div class="code-tip" v-else @click="$emit('active-code')">点击激活</div>
-        <div v-if="detailShow" class="take-out-content mt20"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : ''">
+        <div class="take-out-content mt20"
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : ''">
             <div v-if="app == 21" @click="local">
                 <div class="cloud box-cloud">
                     <p>云闪付拉新视频教程</p>
@@ -31,8 +31,16 @@
                     </div>
                 </div>
             </div>
-            <div class="take-out-content-one"
-                :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : app == 29 ? 'jdbtb' : ''">
+            <div v-if="app == 31" @click="local">
+                <div class="mt-box box-cloud">
+                    <p>美团拉新视频教程</p>
+                    <div class="start">
+                        <img src="../../../static/img/start.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div v-if="app != 31 && app != 34" class="take-out-content-one"
+                :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : app == 29 ? 'jdbtb' : app == 34 ? 'snyg' : ''">
                 <div class="take-out-content-two">
                     <div class="take-out-content-two-header">
                         <span>
@@ -53,24 +61,17 @@
         <div v-if="app == 21" class="cloud" :style="{ padding: '.3rem 0 .5rem 0' }">
             <p class="tc" :style="{ padding: '.3rem', color: '#fff', fontSize: '0.45rem' }">云闪付付款码</p>
             <!-- <img :style="{width: '100%' }" src="../../../static/img/pay.jpg" alt=""> -->
-            <vue-qr class="vue-qr" :logoSrc='config.logo'
-                :style="{ width: '80%', height: '80%', marginLeft: '10%' }" text="https://mf.jlpay.com/?qrCode=84934014816K04N2020081818273710314701" :logoScale="50" :size="300"></vue-qr>
-                <!-- <div>打开云闪付APP、银行APP</div> -->
+            <vue-qr class="vue-qr" :logoSrc='config.logo' :style="{ width: '80%', height: '80%', marginLeft: '10%' }"
+                text="https://mf.jlpay.com/?qrCode=84934014816K04N2020081818273710314701" :logoScale="50" :size="300">
+            </vue-qr>
+            <!-- <div>打开云闪付APP、银行APP</div> -->
         </div>
-        <div class="take-out-content-two-con" :class="detailShow ? '' : 'mt20'">
+        <div class="take-out-content-two-con">
             <img :src="detailImg" alt="">
         </div>
         <div v-if="app == 29" @click="local">
             <div class="bt box-cloud">
                 <p>京东金融普通版白条拉新视频教程</p>
-                <div class="start">
-                    <img src="../../../static/img/start.png" alt="">
-                </div>
-            </div>
-        </div>
-        <div v-if="app == 31" @click="local">
-            <div class="mt-box box-cloud">
-                <p>美团拉新视频教程</p>
                 <div class="start">
                     <img src="../../../static/img/start.png" alt="">
                 </div>
@@ -106,7 +107,7 @@
                 this.config.logo = '../../../static/img/mtIcon.png'
             } else if (this.app == 29) {
                 this.config.logo = '../../../static/img/jdbtIcon.png'
-            } else if(this.app == 34) {
+            } else if (this.app == 34) {
                 this.config.logo = '../../../static/img/snyg.png'
             }
         },
@@ -317,6 +318,7 @@
             }
         }
     }
+
     .snyg {
         background: #2481FA;
     }
@@ -326,7 +328,7 @@
     }
 
     .snygborder {
-        border: .2rem solid #FDB133 !important;
+        border: .2rem solid #2481FA !important;
     }
 
     .mt {

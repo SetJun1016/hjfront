@@ -22,6 +22,8 @@
             </van-field>
             <van-field label-width='4em' class="brb" v-model="params.password" left-icon='lock' type="password"
                 name="密码" label="密码" placeholder="请输入登录密码" :rules="[{ required: true, message: '请填写6位以上的密码' }]" />
+            <van-field label-width='4em' class="brb" v-model="newPass" left-icon='lock' type="password" name="确认密码"
+                label="确认密码" placeholder="请再次输入登录密码" :rules="[{ required: true, message: '请填写6位以上的密码' }]" />
             <div class="mt40">
                 <van-button round block type="danger" @click="register">
                     确定
@@ -50,7 +52,10 @@
                     password: '' // 密码
                 },
                 type: 'bank',
-                timeShow: false
+                timeShow: false,
+                newPass: '',
+                time: 60,
+                timeCheck: ''
             }
         },
         created() {
@@ -63,9 +68,25 @@
                     phone: this.params.phone
                 }).then(res => {
                     console.log(res)
+                    if (res.data.code == 0) {
+                        this.$toast.success('发送成功')
+                        this.timeShow = true
+                        this.time = 60
+                        this.timeCheck = setInterval(() => {
+                            if (this.time == 0) {
+                                clearInterval(this.timeCheck)
+                                this.timeShow = false
+                            }
+                            this.time--
+                        }, 1000)
+                    }
                 })
             },
             register() {
+                if (this.newPass != this.params.password) {
+                    this.$toast.fail('两次输入的密码不一致')
+                    return
+                }
                 this.$toast.loading({
                     message: '加载中...',
                     forbidClick: true,
@@ -73,8 +94,11 @@
                 })
                 Register(this.params).then(res => {
                     console.log(res)
-                    if(res.data.code == 0) {
-                        this.$toast.success('注册成功')
+                    if (res.data.code == 0) {
+                        this.$toast.success('注册成功,正在前往登录页')
+                        setTimeout(() => {
+                            this.$router.replace('login')
+                        }, 2000)
                     } else {
                         this.$toast.fail(res.data.msg)
                     }
@@ -91,7 +115,7 @@
 <style scoped lang="scss">
     .bankRegister {
         // width: 100%;
-        padding: 0 .2rem;
+        padding: 0 .2rem 1rem;
     }
 
     .bank-header {

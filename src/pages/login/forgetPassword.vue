@@ -40,7 +40,8 @@
                     password: ''
                 },
                 timeShow: false, // 倒计时时间是否显示
-                time: 60
+                time: 60,
+                timeCheck: ''
             }
         },
         methods: {
@@ -64,15 +65,15 @@
                     phone: this.params.phone
                 }).then(res => {
                     console.log(res)
-                    if (res.data.code == 200) {
+                    if (res.data.code == 0) {
                         this.timeShow = true
-                        this.$toast('已发送短信');
-                        var auth_timetimer = setInterval(() => {
-                            this.time--
-                            if (this.time <= 0) {
+                        this.time = 60
+                        this.timeCheck = setInterval(() => {
+                            if (this.time == 0) {
+                                clearInterval(this.timeCheck)
                                 this.timeShow = false
-                                clearInterval(auth_timetimer)
                             }
+                            this.time--
                         }, 1000)
                     } else {
                         this.$toast(res.data.msg);
