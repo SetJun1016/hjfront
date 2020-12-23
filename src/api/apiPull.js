@@ -105,3 +105,21 @@ export function ActiveJdWhite(data) {
         data
     })
 }
+
+// 获取京东小金库推广码
+export function GetJdXjk(data) {
+    return request({
+        url: 'jdVaultQR',
+        method: 'post',
+        data
+    })
+}
+
+// 激活京东小金库
+export function ActiveJdXjk(data) {
+    return request({
+        url: 'jdVaultActive',
+        method: 'post',
+        data
+    })
+}

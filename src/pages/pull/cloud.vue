@@ -1,6 +1,6 @@
 <template>
     <div class="alipay">
-        <pull-new-user :app='app' :is_active='is_active' :url='url' :smallTitle='smallTitle' @active-code='activeCode()' title='云闪付拉新' content='请使用云闪付APP扫一扫' :beCareful='beCareful' detailImg=''></pull-new-user>
+        <pull-new-user :app='app' :is_active='is_active' :url='url' :smallTitle='smallTitle' @active-code='activeCode()' title='云闪付拉新' content='请使用微信扫一扫' :beCareful='beCareful' detailImg=''></pull-new-user>
     </div>
 </template>
 

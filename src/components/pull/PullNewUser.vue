@@ -2,15 +2,16 @@
     <div class="pullNew">
         <!-- <van-nav-bar :left-text="title" class="red" left-arrow @click-left="$goBack()" /> -->
         <div class="navbar"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : ''">
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : app == 37 ? 'valut' : ''">
             <van-icon @click="$router.go(-1)" name="arrow-left" />
             <p @click="$router.go(-1)" v-text="title"></p>
         </div>
+        <van-notice-bar left-icon="volume-o" text="在进行拉新操作时，建议用户全程使用4G操作，防止拉新数据风控导致无法获取佣金。避免造成不必要的损失。" />
         <div ref="title" class="title"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : ''"
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : app == 37 ? 'valut' : ''"
             v-text="smallTitle"></div>
         <div class="sector"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : ''">
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : app == 37 ? 'valut' : ''">
         </div>
         <div class='code-box'
             :class="app == 21 ? 'cloudborder' : app == 22 ? 'alipayborder' : app == 31 ? 'mtborder' : app == 23 ? 'jdborder' : app == 29 ? 'jdbtborder' : app == 34 ? 'snygborder' : ''">
@@ -22,7 +23,7 @@
         <div class="code-tip" v-if="is_active == 1" v-text="content"></div>
         <div class="code-tip" v-else @click="$emit('active-code')">点击激活</div>
         <div class="take-out-content mt20"
-            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : ''">
+            :class="app == 21 ? 'cloud' : app == 22 ? 'alipay' : app == 31 ? 'mt' : app == 23 ? 'jd' : app == 29 ? 'jdbt' : app == 34 ? 'snyg' : app == 37 ? 'valut' : ''">
             <div v-if="app == 21" @click="local">
                 <div class="cloud box-cloud">
                     <p>云闪付拉新视频教程</p>
@@ -39,8 +40,16 @@
                     </div>
                 </div>
             </div>
-            <div v-if="app != 31 && app != 34" class="take-out-content-one"
-                :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : app == 29 ? 'jdbtb' : app == 34 ? 'snyg' : ''">
+            <div v-if="app == 37" @click="local">
+                <div class="valut box-cloud">
+                    <p>京东小金库拉新视频教程</p>
+                    <div class="start">
+                        <img src="../../../static/img/start.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div v-if="app != 31 && app != 34 && app != 37" class="take-out-content-one"
+                :class="app == 21 ? 'cloudb' : app == 22 ? 'alipayb' : app == 31 ? 'mtb' : app == 23 ? 'jdb' : app == 29 ? 'jdbtb' : app == 34 ? 'snyg' : app == 37 ? 'valut' : ''">
                 <div class="take-out-content-two">
                     <div class="take-out-content-two-header">
                         <span>
@@ -109,6 +118,8 @@
                 this.config.logo = '../../../static/img/jdbtIcon.png'
             } else if (this.app == 34) {
                 this.config.logo = '../../../static/img/snyg.png'
+            } else if (this.app == 37) {
+                this.config.logo = '../../../static/img/valut.png'
             }
         },
         props: {
@@ -163,6 +174,9 @@
                 } else if (this.app == 31) {
                     window.location.href =
                         'http://mp.weixin.qq.com/mp/video?__biz=MzkzNDE4ODE5Mg==&mid=100000004&sn=f97dfe8cf5bac77f11cbffd30cb0b6a5&vid=wxv_1651729536264273925&idx=1&vidsn=36fc692f0239a996e1580cf9bbc92598&fromid=1&xtrack=1&scene=0&subscene=93&clicktime=1608131568&enterid=1608131568&sessionid=0&ascene=7&realreporttime=1608131568618&forceh5=1'
+                } else if (this.app == 37) {
+                    window.location.href =
+                        'http://mp.weixin.qq.com/mp/video?__biz=MzkzNDE4ODE5Mg==&mid=100000015&sn=7323aafb355a8cf1bad1164474e3d68d&vid=wxv_1663339288987484161&idx=1&vidsn=e1088334429fb1b177e08fa05477c34c&fromid=1&xtrack=1&scene=0&subscene=93&clicktime=1608736823&enterid=1608736823&sessionid=0&ascene=7&realreporttime=1608736823991&forceh5=1'
                 }
             }
         },
@@ -317,6 +331,10 @@
                 }
             }
         }
+    }
+
+    .valut {
+        background: #CB8D4F;
     }
 
     .snyg {

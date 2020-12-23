@@ -5,6 +5,7 @@ import login from './login'
 import home from './home'
 import wallet from './wallet'
 import pull from './pull'
+import list from './list'
 
 Vue.use(Router)
 
@@ -14,6 +15,7 @@ export default new Router({
         ...login, // 登录
         ...home, // 主页
         ...wallet, // 我的钱包
-        ...pull
+        ...pull,
+        ...list
     ]
 })

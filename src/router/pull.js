@@ -48,4 +48,12 @@ export default [
             requireAuth: true
         }
     },
+    {
+        path: '/vault',
+        name: 'vault',
+        component: resolve => require(['@/pages/pull/vault'], resolve),
+        meta: {
+            requireAuth: true
+        }
+    }
 ]

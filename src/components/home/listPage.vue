@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="list-box" :class="index == 0 ? 'mt100' : ''" v-for="(item, index) in listData" :key="index">
+            <div class="list-box" :class="index == 0 ? 'mt100' : ''" v-for="(item, index) in listData" :key="index" @click="$router.push({path: '/list', query: { app: item.name }})">
                 <div class="list-box-img dfl">
                     <img :src="item.image" alt="">
                     <p v-text="item.name"></p>
