@@ -12,7 +12,7 @@ module.exports = {
         proxyTable: {
             '/apis': {
                 // target: 'http://cstui.wudaojz.com',
-                target: 'http://tui.wudaojz.com',
+                target: 'http://zstui.wudaojz.com',
                 changeOrigin: true, //是否跨域
                 pathRewrite: {
                     '^/apis': '/' //需要rewrite重写的

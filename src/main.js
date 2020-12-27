@@ -93,38 +93,30 @@ Vue.prototype.$md5 = md5
 /* eslint-disable no-new */
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('token')
-    var myDate = new Date();
-    let year = myDate.getFullYear()
-    let month = myDate.getMonth() + 1;
-    let day = myDate.getDate();
-    if (year > 2020 || day > 30) {
-        console.log('1231')
-    } else {
-        if (to.meta.requireAuth) {
-            if (token) {
-                next()
-                vm.$toast.loading({
-                    message: '加载中...',
-                    forbidClick: true,
-                    duration: 0
-                })
-            } else {
-                Dialog.confirm({
-                        title: '登录提示',
-                        message: '检测到您暂未登录推广人端账号，立即前去注册或登录账号',
-                        confirmButtonText: '去登陆'
-                    })
-                    .then(() => {
-                        // on confirm
-                        vm.$router.push('login')
-                    })
-                    .catch(() => {
-                        // on cancel
-                    });
-            }
-        } else {
+    if (to.meta.requireAuth) {
+        if (token) {
             next()
+            vm.$toast.loading({
+                message: '加载中...',
+                forbidClick: true,
+                duration: 0
+            })
+        } else {
+            Dialog.confirm({
+                    title: '登录提示',
+                    message: '检测到您暂未登录推广人端账号，立即前去注册或登录账号',
+                    confirmButtonText: '去登陆'
+                })
+                .then(() => {
+                    // on confirm
+                    vm.$router.push('login')
+                })
+                .catch(() => {
+                    // on cancel
+                });
         }
+    } else {
+        next()
     }
     // console.log(year, month, day)
 })

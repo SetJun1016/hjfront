@@ -45,24 +45,9 @@
             <van-grid-item @click="goApp(item.app, item.is_checked)" v-for="(item, index) in app" :key="index" :icon="item.image"
                 :text="item.name" />
         </van-grid>
-        <!-- <div class="mt10 icon-box">
-            <div class='icon-box-img' @click="goApp(item.app)" v-for="(item, index) in app" :key="index">
-                <img :src="item.image" alt="">
-                <p v-text="item.name"></p>
-            </div>
-            <div class='icon-box-img'>
-                <img src="../../../static/img/snyg.png" alt="">
-                <p></p>
-            </div>
-            <div class='icon-box-img'>
-                <img src="../../../static/img/jx.png" alt="">
-                <p>京喜</p>
-            </div>
-            <div class='icon-box-img'>
-                <img src="../../../static/img/zlsh.png" alt="">
-                <p>赞丽生活</p>
-            </div>
-        </div> -->
+        <!-- <div class="mt10"> -->
+            <!-- <div>云闪付</div> -->
+        <!-- </div> -->
         <div class="mt10 task">
             <div class="task-title">任务推荐</div>
             <div class="task-box mt10" v-for="(item, index) in app" :key="index">
@@ -84,13 +69,13 @@
                     </div> -->
                 <!-- </div> -->
                 <div class="task-box-content mt15">
-                    <div class="dfl contentW50">
+                    <!-- <div class="dfl contentW50">
                         <p>领取人数:</p>
                         <p class="ml5" v-text="item.receive_user_count"></p>
-                    </div>
+                    </div> -->
                     <div class="dfl contentW50">
                         <p>发放酬金:</p>
-                        <p class="ml5" v-text="item.grant_price"></p>
+                        <p class="ml5" v-text="item.grant_price + '元'"></p>
                     </div>
                 </div>
                 <div class="dfs task-box-bottom">
