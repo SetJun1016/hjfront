@@ -123,3 +123,39 @@ export function ActiveJdXjk(data) {
         data
     })
 }
+
+// 获取快手极速版拉新推广码
+export function GetKs(data) {
+    return request({
+        url: 'kuaiShouQR',
+        method: 'post',
+        data
+    })
+}
+
+// 激活快手极速版推广码
+export function ActiveKs(data) {
+    return request({
+        url: 'kuaiShouActive',
+        method: 'post',
+        data
+    })
+}
+
+// 获取招商银行掌上生活
+export function GetZssh(data) {
+    return request({
+        url: 'chinaMerchantsBankQR',
+        method: 'post',
+        data
+    })
+}
+
+// 激活招商银行掌上生活推广码
+export function ActivechinaMerchants(data) {
+    return request({
+        url: 'chinaMerchantsBankActive',
+        method: 'post',
+        data
+    })
+}

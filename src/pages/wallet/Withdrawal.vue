@@ -15,6 +15,11 @@
                 提交
             </van-button>
         </div>
+        <div class="mt10 mtTitle">
+            温馨提示：
+            <div class="mt10">1、请确保您在本平台填写的支付宝账号无误，支付宝有误将会导致您的打款失败。</div>
+            <div>2、发起提现后预计3个工作日内到账。</div>
+        </div>
     </div>
 </template>
 
@@ -40,7 +45,7 @@
         },
         methods: {
             submit() {
-                if(this.money == '') {
+                if (this.money == '') {
                     this.$toast.fail('请输入金额')
                     return
                 }
@@ -50,8 +55,10 @@
                     money: this.money
                 }).then(res => {
                     console.log(res)
-                    if(res.data.code == 0) {
+                    if (res.data.code == 0) {
                         this.$toast.success(res.data.msg)
+                        this.getUserInfo()
+                        this.money = ''
                     } else {
                         this.$toast.fail(res.data.msg)
                     }
@@ -138,5 +145,14 @@
 
         // }
 
+    }
+
+    .mtTitle {
+        background: #fff;
+        padding: .3rem;
+
+        div {
+            line-height: .45rem;
+        }
     }
 </style>

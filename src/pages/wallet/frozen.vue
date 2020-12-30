@@ -5,7 +5,7 @@
         <div class="frozen-box" v-for="(item, index) in list" :key="index">
             <p class="dfb">
                 <span v-text='item.desc'></span>
-                <span v-text="item.is_cash == 1 ? '-' + item.score.toFixed(2) : '+' + item.score.toFixed(2)"></span>
+                <span v-text="item.is_cash == 1 ? '-' + item.score : '+' + item.score"></span>
             </p>
             <p v-text="item.status"></p>
             <p v-text="(item.is_cash == 0 ? '入账时间：' : '出账时间：') + (item.created_at || '无')"></p>

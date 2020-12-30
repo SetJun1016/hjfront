@@ -160,6 +160,8 @@
                     this.$router.push('snyg')
                 } else if(app == 37) {
                     this.$router.push('vault')
+                } else if(app == 38) {
+                    this.$router.push('ks')
                 } else {
                     this.$toast.fail('正在维护中...')
                 }

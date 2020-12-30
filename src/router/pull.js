@@ -55,5 +55,13 @@ export default [
         meta: {
             requireAuth: true
         }
+    },
+    {
+        path: '/ks',
+        name: 'ks',
+        component: resolve => require(['@/pages/pull/ks'], resolve),
+        meta: {
+            requireAuth: true
+        }
     }
 ]
